@@ -1,15 +1,16 @@
-package wang.yobbo.sys.workflow.service;
+package wang.yobbo.sys.activiti.editor.workflow.service;
 
 import org.activiti.engine.*;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
+import wang.yobbo.sys.activiti.editor.workflow.entity.StatefulEntity;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import wang.yobbo.sys.dao.UsersDao;
 import wang.yobbo.sys.exception.ProcessInstancesIsNotInactiveException;
 import wang.yobbo.sys.util.IOUtils;
-import wang.yobbo.sys.workflow.entity.StatefulEntity;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,6 +22,7 @@ import java.util.Map;
 /**
  * Created by xiaoyang on 2017/12/23.
  * 流程管理服务类
+ * TODO 封装Exception公共处理类
  */
 @Service
 public class WorkflowService {
@@ -38,36 +40,55 @@ public class WorkflowService {
      * 部署流程
      * @param resourceName 资源名称
      * @param inputStream 资源流
+     * @return 执行结果
      */
-    public void deploy(String resourceName, InputStream inputStream){
-        this.repositoryService.createDeployment().addInputStream(resourceName, inputStream).enableDuplicateFiltering().deploy();
+    public boolean deploy(String resourceName, InputStream inputStream) throws Exception {
+        try{
+            if(null == resourceName || StringUtils.isEmpty(resourceName)) throw new Exception("资源名称为空，部署失败！");
+            if(null == inputStream) throw new Exception("资源流为空，部署失败！");
+            this.repositoryService.createDeployment().addInputStream(resourceName, inputStream).enableDuplicateFiltering().deploy();
+        }catch (Exception e){
+            logger.error("部署流程失败：", e);
+            throw new Exception(e.getMessage());
+        }
+       return true;
     }
 
     /**
      * 删除流程
-     * @param deploymentId
+     * @param deploymentId 流程ID
+     * @return 执行结果
      */
-    public void deleteDeploy(String deploymentId){
-        //根据流程id，查找流程
-        ProcessDefinition processDefinition = this.repositoryService.createProcessDefinitionQuery().deploymentId(deploymentId).singleResult();
-        if(null == processDefinition) return;
+    public boolean deleteDeploy(String deploymentId){
         try{
+            if(null == deploymentId) throw new Exception("流程ID为空，删除失败！");
+            //根据流程id，查找流程
+            ProcessDefinition processDefinition = this.repositoryService.createProcessDefinitionQuery().deploymentId(deploymentId).singleResult();
+            if(null == processDefinition) throw new Exception("查询到流程为空，删除失败！");
             this.repositoryService.deleteDeployment(deploymentId, false);
-        }catch (ProcessInstancesIsNotInactiveException e){
-            logger.error("删除流程异常：" + e.getMessage());
+        }catch (Exception e){
+            logger.error("删除流程失败：", e);
             throw new ProcessInstancesIsNotInactiveException(e.getMessage()); // 抛出为了事务回滚
         }
+        return true;
     }
 
     /**
      * 删除部署内容，支持级联删除
-     * @param deploymentId
+     * @param deploymentId 流程ID
      * @param cascade 为true做级联删除
      */
-    public void deleteDeploy(String deploymentId,boolean cascade) {
-        ProcessDefinition definition = repositoryService.createProcessDefinitionQuery().deploymentId(deploymentId).singleResult();
-        if (null == definition) return;
-        repositoryService.deleteDeployment(definition.getId(), cascade);
+    public boolean deleteDeploy(String deploymentId,boolean cascade) throws Exception {
+        try{
+            if(null == deploymentId || StringUtils.isEmpty(deploymentId)) throw new Exception("流程ID为空，删除部署内容失败！");
+            ProcessDefinition definition = repositoryService.createProcessDefinitionQuery().deploymentId(deploymentId).singleResult();
+            if (null == definition) throw new Exception("查询到流程为空，删除部署内容失败！");
+            repositoryService.deleteDeployment(definition.getId(), cascade);
+        }catch (Exception e){
+            logger.error("删除部署内容失败：", e);
+            throw  new Exception(e.getMessage());
+        }
+        return true;
     }
 
     /**
@@ -76,11 +97,18 @@ public class WorkflowService {
      * @param deploymentId 流程ID
      * @throws IOException
      */
-    public void getProcessModal(OutputStream output, String deploymentId) throws IOException {
-        ProcessDefinition definition = repositoryService.createProcessDefinitionQuery().deploymentId(deploymentId).singleResult();
-        if (definition != null) return;
-        InputStream ins = repositoryService.getProcessModel(definition.getId());
-        IOUtils.byteToOutputStream(IOUtils.toByteArray(ins), output);
+    public void getProcessModal(OutputStream output, String deploymentId) throws Exception {
+        try{
+            if(null == deploymentId || StringUtils.isEmpty(deploymentId)) throw new Exception("流程ID为空，获取资源文件失败！");
+            if(null == output) throw new Exception("接收流为空！");
+            ProcessDefinition definition = repositoryService.createProcessDefinitionQuery().deploymentId(deploymentId).singleResult();
+            if (definition != null) throw new Exception("查询到流程为空，获取资源文件失败！");;
+            InputStream ins = repositoryService.getProcessModel(definition.getId());
+            IOUtils.byteToOutputStream(IOUtils.toByteArray(ins), output);
+        }catch (Exception e){
+            logger.error("获取资源文件失败：", e);
+            throw new Exception(e.getMessage());
+        }
     }
 
     /**

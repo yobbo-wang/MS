@@ -1,4 +1,4 @@
-package wang.yobbo.sys.workflow.entity;
+package wang.yobbo.sys.activiti.editor.workflow.entity;
 
 /**
  * Created by xiaoyang on 2017/12/23.

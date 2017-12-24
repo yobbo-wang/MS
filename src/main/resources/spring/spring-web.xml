@@ -11,8 +11,9 @@
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
         <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
     </context:component-scan>
-    <context:component-scan base-package="org.activiti.rest.editor" />
-    <context:component-scan base-package="org.activiti.rest.diagram" />
+
+    <!-- activiti mvc -->
+    <context:component-scan base-package="wang.yobbo.sys.activiti.editor" />
 
     <!--<mvc:resources location="/static/"  mapping="/static/**" />-->
     <mvc:view-controller path="/" view-name="redirect:/sys/login"/>
@@ -23,7 +24,6 @@
         <property name="contentType" value="text/html;charset=UTF-8"/>
         <property name="prefix" value="/WEB-INF/views/"/>
         <property name="suffix" value=".jsp"/>
-        <!--<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>-->
     </bean>
 
 </beans>

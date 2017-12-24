@@ -21,6 +21,8 @@
     <logback-core.version>1.1.1</logback-core.version>
     <logback-ext-spring.version>0.1.1</logback-ext-spring.version>
     <activiti.version>5.22.0</activiti.version>
+    <batik.version>1.7</batik.version>
+    <aspectjweaver.version>1.8.11</aspectjweaver.version>
   </properties>
   <dependencies>
     <dependency>
@@ -108,11 +110,11 @@
       <version>${servelt.version}</version>
     </dependency>
     <!-- commons net libs -->
-    <dependency>
+<!--    <dependency>
       <groupId>commons-net</groupId>
       <artifactId>commons-net</artifactId>
       <version>${commonsNet.version}</version>
-    </dependency>
+    </dependency>-->
     <!-- hibernate libs -->
     <dependency>
       <groupId>org.hibernate</groupId>
@@ -128,6 +130,11 @@
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-ehcache</artifactId>
       <version>${hibernate.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjweaver</artifactId>
+      <version>${aspectjweaver.version}</version>
     </dependency>
     <!-- log4j libs -->
       <dependency>
@@ -189,11 +196,6 @@
     </dependency>
     <dependency>
       <groupId>org.activiti</groupId>
-      <artifactId>activiti-diagram-rest</artifactId>
-      <version>${activiti.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.activiti</groupId>
       <artifactId>activiti-explorer</artifactId>
       <version>${activiti.version}</version>
     </dependency>
@@ -209,11 +211,6 @@
     </dependency>
     <dependency>
       <groupId>org.activiti</groupId>
-      <artifactId>activiti-modeler</artifactId>
-      <version>${activiti.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.activiti</groupId>
       <artifactId>activiti-simple-workflow</artifactId>
       <version>${activiti.version}</version>
     </dependency>
@@ -221,6 +218,57 @@
       <groupId>org.activiti</groupId>
       <artifactId>activiti-process-validation</artifactId>
       <version>${activiti.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.xmlgraphics</groupId>
+      <artifactId>batik-parser</artifactId>
+      <version>${batik.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.xmlgraphics</groupId>
+      <artifactId>batik-transcoder</artifactId>
+      <version>${batik.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>xml-apis</groupId>
+          <artifactId>xml-apis</artifactId>
+        </exclusion>
+        <exclusion>
+          <artifactId>xalan</artifactId>
+          <groupId>xalan</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.xmlgraphics</groupId>
+      <artifactId>batik-bridge</artifactId>
+      <version>${batik.version}</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>xalan</artifactId>
+          <groupId>xalan</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.xmlgraphics</groupId>
+      <artifactId>batik-codec</artifactId>
+      <version>${batik.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.xmlgraphics</groupId>
+      <artifactId>batik-css</artifactId>
+      <version>${batik.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.xmlgraphics</groupId>
+      <artifactId>batik-svg-dom</artifactId>
+      <version>${batik.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.xmlgraphics</groupId>
+      <artifactId>batik-svggen</artifactId>
+      <version>${batik.version}</version>
     </dependency>
 
   </dependencies>

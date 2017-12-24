@@ -10,4 +10,6 @@
         <context:exclude-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice" />
     </context:component-scan>
 
+    <!-- shiro相关 -->
+
 </beans>

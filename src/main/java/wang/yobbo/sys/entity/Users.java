@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "sys_users")
+@Table(name = "bcm_sys_users")
 @Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class Users implements Serializable{
 

@@ -212,11 +212,12 @@ activitiModeler
 	                    var offset = jQuery("#editor-header").offset();
 	                    var propSectionHeight = jQuery('#propertySection').height();
 	                    var canvas = jQuery('#canvasSection');
-	                    var mainHeader = jQuery('#main-header');
+	                    // var mainHeader = jQuery('#main-header');
+                        var mainHeaderHeight = 40;
 
 	                    if (offset == undefined || offset === null
 	                        || propSectionHeight === undefined || propSectionHeight === null
-	                        || canvas === undefined || canvas === null || mainHeader === null) {
+	                        || canvas === undefined || canvas === null ) {
 	                        return;
 	                    }
 	                    
@@ -238,7 +239,7 @@ activitiModeler
 	        	            }
 	                	}
 
-	                    var totalAvailable = jQuery(window).height() - offset.top - mainHeader.height() - 21;
+	                    var totalAvailable = jQuery(window).height() - offset.top - mainHeaderHeight - 21;
 	                    canvas.height(totalAvailable - propSectionHeight);
 	                    jQuery('#paletteSection').height(totalAvailable);
 
