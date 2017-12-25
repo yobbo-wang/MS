@@ -58,7 +58,7 @@ public class ModuleController {
             repositoryService.saveModel(modelData);
             repositoryService.addModelEditorSource(modelData.getId(), editorNode.toString().getBytes("utf-8"));
 
-            response.sendRedirect(request.getContextPath() + "/modeler.html?modelId=" + modelData.getId());
+            response.sendRedirect(request.getContextPath() + "/engine/index.jsp?modelId=" + modelData.getId());
         } catch (Exception e) {
             logger.error("创建模型失败：", e);
         }
