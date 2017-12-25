@@ -22,7 +22,9 @@
     <logback-ext-spring.version>0.1.1</logback-ext-spring.version>
     <activiti.version>5.22.0</activiti.version>
     <batik.version>1.7</batik.version>
+    <!-- aop dependency lib version -->
     <aspectjweaver.version>1.8.11</aspectjweaver.version>
+    <!-- shrio libs version -->
   </properties>
   <dependencies>
     <dependency>

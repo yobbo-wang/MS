@@ -1,6 +1,13 @@
 package wang.yobbo.sys.activiti.editor.workflow.service;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.activiti.bpmn.converter.BpmnXMLConverter;
+import org.activiti.bpmn.model.BpmnModel;
+import org.activiti.editor.language.json.converter.BpmnJsonConverter;
 import org.activiti.engine.*;
+import org.activiti.engine.repository.DeploymentBuilder;
+import org.activiti.engine.repository.Model;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
 import wang.yobbo.sys.activiti.editor.workflow.entity.StatefulEntity;
@@ -37,7 +44,29 @@ public class WorkflowService {
     @Autowired private UsersDao usersDao;
 
     /**
-     * 部署流程
+     * 从数据库中获取流，并部署流程
+     * @param modelId
+     * @return
+     */
+    public boolean deployByModelId(String modelId) throws Exception {
+        try {
+            Model model = this.repositoryService.getModel(modelId);
+            byte[] modelEditorSource = this.repositoryService.getModelEditorSource(model.getId()); //根据model获取字节流
+            JsonNode jsonNode = new ObjectMapper().readTree(modelEditorSource);
+            BpmnModel bpmnModel = new BpmnJsonConverter().convertToBpmnModel(jsonNode);
+            byte[] bpmnBytes = new BpmnXMLConverter().convertToXML(bpmnModel);
+            String processName = model.getName() + ".bpmn20.xml";
+            DeploymentBuilder deploymentBuilder = repositoryService.createDeployment().name(model.getName()); //创建部署
+            deploymentBuilder.addString(processName, new String(bpmnBytes, "utf-8")).deploy(); //往内容里写东西
+        } catch (IOException e) {
+            logger.error("部署流程失败：", e);
+            throw new Exception(e.getMessage());
+        }
+        return true;
+    }
+
+    /**
+     * 部署流程，支持流部署
      * @param resourceName 资源名称
      * @param inputStream 资源流
      * @return 执行结果

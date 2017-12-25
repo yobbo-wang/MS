@@ -20,9 +20,9 @@ import javax.servlet.http.HttpServletResponse;
  * 流程设计模型控制器
  */
 @RestController
+@RequestMapping("/activiti-edit")
 public class ModuleController {
     private final Logger logger = Logger.getLogger(ModuleController.class);
-
     @Autowired private RepositoryService repositoryService;
 
     /**
@@ -58,7 +58,7 @@ public class ModuleController {
             repositoryService.saveModel(modelData);
             repositoryService.addModelEditorSource(modelData.getId(), editorNode.toString().getBytes("utf-8"));
 
-            response.sendRedirect(request.getContextPath() + "/engine/index.jsp?modelId=" + modelData.getId());
+            response.sendRedirect(request.getContextPath() + "/activiti-app/index.jsp?modelId=" + modelData.getId());
         } catch (Exception e) {
             logger.error("创建模型失败：", e);
         }
