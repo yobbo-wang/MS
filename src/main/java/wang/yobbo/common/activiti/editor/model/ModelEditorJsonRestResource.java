@@ -1,4 +1,4 @@
-package wang.yobbo.sys.activiti.editor.model;
+package wang.yobbo.common.activiti.editor.model;
 
 import org.activiti.editor.constants.ModelDataJsonConstants;
 import org.activiti.engine.ActivitiException;

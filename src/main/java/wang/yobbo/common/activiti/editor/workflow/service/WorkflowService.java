@@ -1,4 +1,4 @@
-package wang.yobbo.sys.activiti.editor.workflow.service;
+package wang.yobbo.common.activiti.editor.workflow.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -10,7 +10,7 @@ import org.activiti.engine.repository.DeploymentBuilder;
 import org.activiti.engine.repository.Model;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
-import wang.yobbo.sys.activiti.editor.workflow.entity.StatefulEntity;
+import wang.yobbo.common.activiti.editor.workflow.entity.StatefulEntity;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

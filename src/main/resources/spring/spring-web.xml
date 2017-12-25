@@ -13,7 +13,7 @@
     </context:component-scan>
 
     <!-- activiti mvc -->
-    <context:component-scan base-package="wang.yobbo.sys.activiti.editor" />
+    <context:component-scan base-package="wang.yobbo.common.activiti.editor" />
 
     <!--<mvc:resources location="/static/"  mapping="/static/**" />-->
     <mvc:view-controller path="/" view-name="redirect:/sys/login"/>

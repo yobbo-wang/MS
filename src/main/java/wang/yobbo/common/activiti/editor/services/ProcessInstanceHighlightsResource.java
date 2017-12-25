@@ -11,7 +11,7 @@
  * limitations under the License.
  */
 
-package wang.yobbo.sys.activiti.editor.diagram.services;
+package wang.yobbo.common.activiti.editor.services;
 
 import java.util.ArrayList;
 import java.util.HashMap;

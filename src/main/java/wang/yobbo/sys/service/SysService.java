@@ -3,12 +3,12 @@ package wang.yobbo.sys.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import wang.yobbo.common.appengine.BaseDao;
 import wang.yobbo.sys.dao.UsersDao;
 import wang.yobbo.sys.entity.Accounts;
 
 @Service
-@Transactional
-public class SysService {
+public class SysService extends BaseDao{
 
     @Autowired
     private UsersDao usersDao;
@@ -26,5 +26,4 @@ public class SysService {
         int s = 1 / 0;
         this.accountsService.updateInMenoy(a2);
     }
-
 }

@@ -1,4 +1,4 @@
-package wang.yobbo.sys.activiti.editor;
+package wang.yobbo.common.activiti.editor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;

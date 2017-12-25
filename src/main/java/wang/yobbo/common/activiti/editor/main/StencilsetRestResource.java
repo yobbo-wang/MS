@@ -1,4 +1,4 @@
-package wang.yobbo.sys.activiti.editor.main;
+package wang.yobbo.common.activiti.editor.main;
 
 import java.io.InputStream;
 

@@ -11,7 +11,7 @@
  * limitations under the License.
  */
 
-package wang.yobbo.sys.activiti.editor.diagram.services;
+package wang.yobbo.common.activiti.editor.services;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.web.bind.annotation.PathVariable;

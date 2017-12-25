@@ -7,6 +7,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import wang.yobbo.sys.dao.UsersDao;
 import wang.yobbo.sys.entity.Users;
+import wang.yobbo.sys.service.SysService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,14 @@ import java.util.List;
 public class UsersTest {
 
     @Autowired
+    private SysService sysService;
+
+    @Autowired
     private UsersDao usersDao;
+
+    public void saveBase(){
+
+    }
 
     //测试二级缓存是否生效
     @Test
