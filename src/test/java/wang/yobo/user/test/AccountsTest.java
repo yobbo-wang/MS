@@ -16,7 +16,7 @@ import java.util.List;
  * Created by xiaoyang on 2017/12/24.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:spring/spring-root.xml"})
+//@ContextConfiguration(locations = {"classpath:spring/spring-root.xml"})
 public class AccountsTest {
 
     @Autowired

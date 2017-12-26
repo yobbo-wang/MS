@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:spring/spring-persistence.xml"})
+//@ContextConfiguration(locations = {"classpath:spring/spring-persistence.xml"})
 public class UsersTest {
 
     @Autowired

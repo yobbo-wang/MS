@@ -3,7 +3,8 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="processEngineConfiguration" class="org.activiti.spring.SpringProcessEngineConfiguration">
+    <!-- native configuration -->
+    <!--<bean id="processEngineConfiguration" class="org.activiti.spring.SpringProcessEngineConfiguration">
         <property name="dataSource" ref="dataSource" />
         <property name="transactionManager" ref="transactionManager" />
         <property name="databaseSchemaUpdate" value="true" />
@@ -11,6 +12,20 @@
         <property name="activityFontName" value="宋体"/>
         <property name="labelFontName" value="宋体"/>
         <property name="history" value="full" />
+        <property name="processDefinitionCacheLimit" value="10" />
+    </bean>-->
+
+    <!-- 使用JPA操作activiti -->
+    <bean id="processEngineConfiguration" class="org.activiti.spring.SpringProcessEngineConfiguration">
+        <property name="dataSource" ref="dataSource" />
+        <property name="transactionManager" ref="transactionManager" />
+        <property name="databaseSchemaUpdate" value="true" />
+        <property name="jpaEntityManagerFactory" ref="ehcacheEntityManagerFactory" />
+        <property name="jpaHandleTransaction" value="true" />
+        <property name="jpaCloseEntityManager" value="true" />
+        <property name="jobExecutorActivate" value="false" />
+        <property name="activityFontName" value="宋体"/>
+        <property name="labelFontName" value="宋体"/>
         <property name="processDefinitionCacheLimit" value="10" />
     </bean>
 
@@ -27,10 +42,5 @@
     <bean id="historyService" factory-bean="processEngine" factory-method="getHistoryService" />
     <bean id="managementService" factory-bean="processEngine" factory-method="getManagementService" />
     <bean id="identityService" factory-bean="processEngine" factory-method="getIdentityService" />
-
-    <!-- test debug-->
-    <bean id="activitiRule" class="org.activiti.engine.test.ActivitiRule">
-        <property name="processEngine" ref="processEngine" />
-    </bean>
 
 </beans>

@@ -34,7 +34,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:spring/spring-root.xml")
+//@ContextConfiguration("classpath:spring/spring-root.xml")
 public class ActivitiTest {
     @Autowired
     private RuntimeService runtimeService;
