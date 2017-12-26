@@ -34,7 +34,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-//@ContextConfiguration("classpath:spring/spring-root.xml")
+@ContextConfiguration("classpath:spring/spring-root.xml")
 public class ActivitiTest {
     @Autowired
     private RuntimeService runtimeService;
@@ -76,7 +76,7 @@ public class ActivitiTest {
     @Test
     public void startDeploy(){
 //        this.processEngine.getRuntimeService().startProcessInstanceById("1");
-        ProcessInstance pi = this.processEngine.getRuntimeService().startProcessInstanceByKey("mysql-001");
+        ProcessInstance pi = this.processEngine.getRuntimeService().startProcessInstanceByKey("LoanRequestProcess");
         System.out.println("流程实例ID:" + pi.getId());
         System.out.println("流程定义ID:" + pi.getProcessDefinitionId());
     }
