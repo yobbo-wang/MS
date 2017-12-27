@@ -11,7 +11,7 @@
  * limitations under the License.
  */
 
-package wang.yobbbo.activiti.entity;
+package wang.yobbo.test.entity;
 
 import javax.persistence.*;
 
