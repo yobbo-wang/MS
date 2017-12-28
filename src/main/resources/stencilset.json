@@ -7,9 +7,9 @@
     "properties" : [ {
       "id" : "process_id",
       "type" : "String",
-      "title" : "Process identifier",
+      "title" : "流程ID",
       "value" : "process",
-      "description" : "Unique identifier of the process definition.",
+      "description" : "流程定义的唯一标识符",
       "popular" : true
     } ]
   }, {
@@ -19,7 +19,7 @@
       "type" : "String",
       "title" : "Id",
       "value" : "",
-      "description" : "Unique identifier of the element.",
+      "description" : "元素的唯一标识符",
       "popular" : true
     } ]
   }, {
@@ -27,9 +27,9 @@
     "properties" : [ {
       "id" : "name",
       "type" : "String",
-      "title" : "Name",
+      "title" : "名称",
       "value" : "",
-      "description" : "The descriptive name of the BPMN element.",
+      "description" : "流程名称",
       "popular" : true,
       "refToView" : "text_name"
     } ]
@@ -38,9 +38,9 @@
     "properties" : [ {
       "id" : "documentation",
       "type" : "Text",
-      "title" : "Documentation",
+      "title" : "文档",
       "value" : "",
-      "description" : "The descriptive name of the BPMN element.",
+      "description" : "流程文档说明",
       "popular" : true
     } ]
   }, {
@@ -48,9 +48,9 @@
     "properties" : [ {
       "id" : "process_author",
       "type" : "String",
-      "title" : "Process author",
+      "title" : "创建者",
       "value" : "",
-      "description" : "Author of the process definition.",
+      "description" : "流程创建者",
       "popular" : true
     } ]
   }, {
@@ -58,9 +58,9 @@
     "properties" : [ {
       "id" : "process_version",
       "type" : "String",
-      "title" : "Process version string (documentation only)",
+      "title" : "流程版本号",
       "value" : "",
-      "description" : "Version identifier for documentation purpose.",
+      "description" : "关于文档版本号",
       "popular" : true
     } ]
   }, {
@@ -68,9 +68,9 @@
     "properties" : [ {
       "id" : "process_namespace",
       "type" : "String",
-      "title" : "Target namespace",
-      "value" : "http://www.activiti.org/processdef",
-      "description" : "Target namespace for the process definition.",
+      "title" : "目标命名空间",
+      "value" : "http://yobbo.wang",
+      "description" : "流程定义的目标命名空间",
       "popular" : true
     } ]
   }, {
@@ -98,9 +98,9 @@
     "properties" : [ {
       "id" : "executionlisteners",
       "type" : "multiplecomplex",
-      "title" : "Execution listeners",
+      "title" : "执行监听",
       "value" : "",
-      "description" : "Listeners for an activity, process, sequence flow, start and end event.",
+      "description" : "用于活动、流程、序列流、开始和结束事件的侦听器",
       "popular" : true
     } ]
   }, {
@@ -108,9 +108,9 @@
     "properties" : [ {
       "id" : "tasklisteners",
       "type" : "multiplecomplex",
-      "title" : "Task listeners",
+      "title" : "用户任务监听",
       "value" : "",
-      "description" : "Listeners for a user task",
+      "description" : "用户任务监听器",
       "popular" : true
     } ]
   }, {
@@ -118,9 +118,9 @@
     "properties" : [ {
       "id" : "eventlisteners",
       "type" : "multiplecomplex",
-      "title" : "Event listeners",
+      "title" : "事件监听",
       "value" : "",
-      "description" : "Listeners for any event happening in the Activiti Engine. It's also possible to rethrow the event as a signal, message or error event",
+      "description" : "activiti中任何事件执行的监听",
       "popular" : true
     } ]
   }, {
@@ -138,7 +138,7 @@
     "properties" : [ {
       "id" : "formproperties",
       "type" : "Complex",
-      "title" : "Form properties",
+      "title" : "表单属性",
       "value" : "",
       "description" : "Definition of the form with a list of form properties",
       "popular" : true
@@ -529,9 +529,9 @@
     "properties" : [ {
       "id" : "messageref",
       "type" : "String",
-      "title" : "Message reference",
+      "title" : "消息引用",
       "value" : "",
-      "description" : "Define the message name.",
+      "description" : "定义消息的名字",
       "popular" : true
     } ]
   }, {
@@ -539,9 +539,9 @@
     "properties" : [ {
       "id" : "signalref",
       "type" : "String",
-      "title" : "Signal reference",
+      "title" : "单次引用",
       "value" : "",
-      "description" : "Define the signal name.",
+      "description" : "定义信号名",
       "popular" : true
     } ]
   }, {
@@ -570,9 +570,9 @@
     "properties" : [ {
       "id" : "initiator",
       "type" : "String",
-      "title" : "Initiator",
+      "title" : "启动流程",
       "value" : "",
-      "description" : "Initiator of the process.",
+      "description" : "流程启动者",
       "popular" : true
     } ]
   }, {

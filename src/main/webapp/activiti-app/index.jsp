@@ -26,7 +26,14 @@
 
 	<link rel="stylesheet" href="<%= path %>/activiti-app/editor-app/css/style-common.css">
     <link rel="stylesheet" href="<%= path %>/activiti-app/editor-app/css/style-editor.css">
-	<script type="text/javascript">var path = "<%= path %>";</script>
+	<script type="text/javascript">
+		var path = "<%= path %>";
+		//重写alert、confirm、prompt
+		window.alert = function(msg){
+            var v = confirm(msg + "自动一alert？");
+		}
+		alert("aaaa");
+	</script>
 </head>
 <body>
 	<!--<div class="navbar navbar-fixed-top navbar-inverse" role="navigation" id="main-header">

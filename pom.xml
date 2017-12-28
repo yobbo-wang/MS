@@ -7,6 +7,17 @@
   <version>1.0-SNAPSHOT</version>
   <name>JPA Maven Webapp</name>
   <url>http://maven.apache.org</url>
+  <repositories>
+    <!-- 推荐使用oschina仓库 -->
+    <repository>
+        <id>nexus-osc</id>
+        <url>http://maven.oschina.net/content/groups/public/</url>
+    </repository>
+    <repository>
+        <id>nexus-osc-thirdparty</id>
+        <url>http://maven.oschina.net/content/repositories/thirdparty/</url>
+    </repository>
+  </repositories>
   <!-- libs version-->
   <properties>
     <spring.version>4.1.3.RELEASE</spring.version>
