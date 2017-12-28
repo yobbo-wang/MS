@@ -2,11 +2,11 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
-         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <context:property-placeholder location="classpath:props/*.properties" />
 
@@ -106,13 +106,13 @@
     <!-- open can add annotation -->
     <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
 
-    <!-- 使用EntityManagerFactory原生操作数据库 -->
-    <!--<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean" >
-        <property name="staticMethod" value="wang.yobbo.common.appengine.BaseDao.setEntityManagerFactory" />
+    <!-- 使用EntityManagerFactory封装公共接口 -->
+    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean" >
+        <property name="staticMethod" value="wang.yobbo.common.appengine.dao.BaseDaoManager.setEntityManagerFactory" />
         <property name="arguments" ref="ehcacheEntityManagerFactory" />
-    </bean>-->
+    </bean>
 
-    <jpa:repositories base-package="wang.yobbo.**.dao" entity-manager-factory-ref="ehcacheEntityManagerFactory"
-                      transaction-manager-ref="transactionManager"/>
+    <!--<jpa:repositories base-package="wang.yobbo.**.dao" entity-manager-factory-ref="ehcacheEntityManagerFactory"
+                      transaction-manager-ref="transactionManager"/>-->
 
 </beans>

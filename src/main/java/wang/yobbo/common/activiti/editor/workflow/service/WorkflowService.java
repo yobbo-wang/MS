@@ -157,7 +157,7 @@ public class WorkflowService {
         variables.put(VAR_OWNER_TABLE, entity.getClass().getName());
         variables.put(VAR_OWNER_ID, entity.getID());
         variables.put(VAR_CREATOR, initiator);
-        if(null != initiator) variables.put(VAR_CREATOR_NAME, usersDao.findOne(initiator).getUsername());
+//        if(null != initiator) variables.put(VAR_CREATOR_NAME, usersDao.findOne(initiator).getUsername());
         variables.put(VAR_CREATE_DATE_TIME, new Date());
         this.identityService.setAuthenticatedUserId(initiator.toString()); //设置授权用户信息
         ProcessInstance processInstance = this.runtimeService.startProcessInstanceByKey(processKey, variables);
