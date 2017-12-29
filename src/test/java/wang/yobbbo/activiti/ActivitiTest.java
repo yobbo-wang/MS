@@ -51,7 +51,7 @@ public class ActivitiTest {
     @Test
     public void deploy(){
         //先获取
-        Model model = this.repositoryService.getModel("1");
+        Model model = this.repositoryService.getModel("437503");
         byte[] modelEditorSource = this.repositoryService.getModelEditorSource(model.getId()); //根据model获取字节流
         try {
             JsonNode jsonNode = new ObjectMapper().readTree(modelEditorSource);
@@ -76,7 +76,7 @@ public class ActivitiTest {
     @Test
     public void startDeploy(){
 //        this.processEngine.getRuntimeService().startProcessInstanceById("1");
-        ProcessInstance pi = this.processEngine.getRuntimeService().startProcessInstanceByKey("LoanRequestProcess");
+        ProcessInstance pi = this.processEngine.getRuntimeService().startProcessInstanceByKey("process_437520");
         System.out.println("流程实例ID:" + pi.getId());
         System.out.println("流程定义ID:" + pi.getProcessDefinitionId());
     }

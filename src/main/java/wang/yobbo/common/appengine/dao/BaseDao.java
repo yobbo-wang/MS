@@ -12,7 +12,7 @@ import java.util.Map;
  * Created by xiaoyang on 2017/12/28.
  * 数据操作层公共封装接口
  */
-public interface BaseDao<E extends AbstractEntity, ID extends Serializable> {
+public interface BaseDao<E, ID extends Serializable> {
 
     /**
      * 获取记录数

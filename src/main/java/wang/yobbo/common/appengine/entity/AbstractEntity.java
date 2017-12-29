@@ -13,15 +13,14 @@ import java.io.Serializable;
  */
 @MappedSuperclass
 public abstract class AbstractEntity<ID extends Serializable> implements Persistable<ID> {
-    private static BaseDaoManager baseDaoManager;
+//    private static BaseDaoManager baseDaoManager;
     public abstract ID getId();
     public abstract void setId(ID var1);
 
-    private static BaseDaoManager getBaseDao(Class<? extends AbstractEntity> clazz) {
+    /*private static BaseDaoManager getBaseDao(Class<? extends AbstractEntity> clazz) {
         if(null == baseDaoManager) {
             baseDaoManager = new BaseDaoManager(clazz);
         }
-
         return baseDaoManager;
-    }
+    }*/
 }

@@ -26,14 +26,7 @@
 
 	<link rel="stylesheet" href="<%= path %>/activiti-app/editor-app/css/style-common.css">
     <link rel="stylesheet" href="<%= path %>/activiti-app/editor-app/css/style-editor.css">
-	<script type="text/javascript">
-		var path = "<%= path %>";
-		//重写alert、confirm、prompt
-		window.alert = function(msg){
-            var v = confirm(msg + "自动一alert？");
-		}
-		alert("aaaa");
-	</script>
+	<script type="text/javascript">var path = "<%= path %>";</script>
 </head>
 <body>
 	<!--<div class="navbar navbar-fixed-top navbar-inverse" role="navigation" id="main-header">
@@ -143,6 +136,16 @@
 	
 	<script src="<%= path %>/activiti-app/editor-app/configuration/properties.js" type="text/javascript"></script>
 	<script src="<%= path %>/activiti-app/editor-app/configuration/properties-custom-controllers.js" type="text/javascript"></script>
-
+<script type="text/javascript">
+	//左边列表收缩展开
+	function stencilsListDispaly() {
+        jQuery('#paletteHelpWrapper').width('2%');
+        var palette = jQuery('#paletteSection');
+        palette.children()[1].style.display = "none";
+        palette.css({"background-color": "#d8d7d7"});
+        jQuery('#canvasHelpWrapper').width('98%');
+        jQuery('#propertiesHelpWrapper').width('98%');
+    }
+</script>
 </body>
 </html>

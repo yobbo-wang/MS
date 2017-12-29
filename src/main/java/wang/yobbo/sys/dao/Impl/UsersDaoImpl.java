@@ -12,8 +12,13 @@ import wang.yobbo.sys.entity.User;
 @Service
 public class UsersDaoImpl extends BaseDaoImpl<User, String> implements UsersDao{
 
-    public void findBySql(String sql) {
-        System.out.println(this.findBySqlOne("SELECT * FROM `act_re_model`"));
+    public void findBySql(String sql, Object...params) {
+        System.out.println(super.findBySqlOne(sql, params));
+    }
+
+    @Override
+    public int findBySqlCount(String sql, Object... params) {
+        return super.fingBySqlCount(sql, params);
     }
 
 }

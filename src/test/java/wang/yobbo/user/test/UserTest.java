@@ -7,6 +7,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import wang.yobbo.sys.dao.UsersDao;
 
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by xiaoyang on 2017/12/28.
  *
@@ -19,6 +24,23 @@ public class UserTest {
 
     @Test
     public void testFindBySql(){
-        this.usersDao.findBySql("");
+        String sql = " SELECT * FROM `act_re_model` where ID_ = ?1 and CREATE_TIME_ >= ?2 and CREATE_TIME_ <= ?3";
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            this.usersDao.findBySql(sql, 1, sdf.parse("2017-1-1").getTime(),
+                    new Timestamp(System.currentTimeMillis()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testOne(){
+        this.usersDao.findBySql("SELECT * FROM `act_hi_actinst`");
+    }
+
+    @Test
+    public void findBySqlCount(){
+        System.out.println(this.usersDao.findBySqlCount("SELECT * FROM `act_hi_actinst`"));
     }
 }

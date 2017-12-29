@@ -2,12 +2,14 @@ package wang.yobbo.sys.entity;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import wang.yobbo.common.appengine.entity.AbstractEntity;
 import wang.yobbo.common.appengine.entity.BaseEntity;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
+/**
+ * 实体类可以继承BaseEntity，BaseEntity类已经加了ID、CREATE_DATE、UPDATE_DATE字段，主键生成策略是32位UUID
+ */
 @Entity
 @Table(name = "bcm_sys_users")
 @Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
@@ -51,14 +53,14 @@ public class User extends BaseEntity<String> implements Serializable{
         this.pwd = pwd;
     }
 
-    public String getId() {
-        return null;
-    }
-
-    public void setId(String var1) {
-
-    }
     public boolean isNew() {
         return false;
     }
+
+    /*public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }*/
 }
