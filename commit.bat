@@ -5,5 +5,6 @@ git add ./pom.xml
 git add ./MS.sql
 git add ./commit.bat
 git add ./bootstrap-alert.zip
+git add ./lib.zip
 git commit -m 'update'
 git push origin -u master

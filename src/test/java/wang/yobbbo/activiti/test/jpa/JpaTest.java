@@ -60,14 +60,14 @@ public class JpaTest{
         ProcessInstance loanRequestProcess = runtimeService.startProcessInstanceByKey("LoanRequestProcess", variables);
         System.out.println("processDefinitionId: " + loanRequestProcess.getProcessDefinitionId());//LoanRequestProcess:2:5004
         System.out.println("name: " + loanRequestProcess.getName());//null
-        System.out.println("ID: " + loanRequestProcess.getId()); //17501
+        System.out.println("ID: " + loanRequestProcess.getId()); //17501  25001
         System.out.println("Description: " + loanRequestProcess.getDescription());//null
     }
 
     //获取贷款相关信息
     @Test
     public void getLoadInfo(){
-        Object value = runtimeService.getVariable("17501", "loanRequest"); //返回实例对象
+        Object value = runtimeService.getVariable("25001", "loanRequest"); //返回实例对象
         assertNotNull(value);
         assertTrue(value instanceof LoanRequest); //断言
         LoanRequest request = (LoanRequest) value;
@@ -75,7 +75,7 @@ public class JpaTest{
         System.out.println("NAME: " + request.getCustomerName());
         System.out.println("Amount为: " + request.getAmount().longValue());
         assertEquals("小杨", request.getCustomerName());
-        assertEquals(100000L, request.getAmount().longValue());
+        assertEquals(500000L, request.getAmount().longValue());
         assertFalse(request.isApproved());
     }
 
@@ -100,15 +100,31 @@ public class JpaTest{
         }
     }
 
-     // 完成我的任务
+     // 完成我的任务,通过申请
     @Test
     public void compliteMyPersonTask() {
         // 任务ID
         Map<String, Object> variables = new HashMap<String, Object>();
         variables.put("approvedByManager", Boolean.TRUE);
-        String taskId = "17508";
+        String taskId = "22505";
         this.processEngine.getTaskService().complete(taskId, variables);
         System.out.println("完成任务：任务ID:" + taskId);
+    }
+
+    // 完成我的任务
+    @Test
+    public void compliteMyPersonTaskFaild() {
+        // 任务ID
+        Map<String, Object> variables = new HashMap<String, Object>();
+        variables.put("approvedByManager", Boolean.FALSE);
+        String taskId = "25008";
+        this.processEngine.getTaskService().complete(taskId, variables);
+        System.out.println("完成任务：任务ID:" + taskId);
+    }
+
+    @Test
+    public void queryTask(){
+        System.out.println("任务数：" + runtimeService.createProcessInstanceQuery().count());
     }
 
 }

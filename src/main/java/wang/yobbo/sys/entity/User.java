@@ -2,6 +2,8 @@ package wang.yobbo.sys.entity;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import wang.yobbo.common.appengine.entity.AbstractEntity;
+import wang.yobbo.common.appengine.entity.BaseEntity;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -9,12 +11,12 @@ import java.io.Serializable;
 @Entity
 @Table(name = "bcm_sys_users")
 @Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
-public class Users implements Serializable{
+public class User extends BaseEntity<String> implements Serializable{
 
-    @Id
+    /*@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID", length = 20)
-    private Long id;
+    private Long id;*/
 
     @Column(name = "USER_NAME", length = 100, nullable = false, unique = true)
     private String username;
@@ -49,10 +51,14 @@ public class Users implements Serializable{
         this.pwd = pwd;
     }
 
-    public Long getId() {
-        return id;
+    public String getId() {
+        return null;
     }
-    public void setId(Long id) {
-        this.id = id;
+
+    public void setId(String var1) {
+
+    }
+    public boolean isNew() {
+        return false;
     }
 }
