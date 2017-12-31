@@ -1,5 +1,6 @@
 package wang.yobbo.sys.dao.Impl;
 
+import net.sf.ehcache.config.Searchable;
 import org.springframework.stereotype.Service;
 import wang.yobbo.common.appengine.dao.Impl.BaseDaoImpl;
 import wang.yobbo.sys.dao.UsersDao;
@@ -18,7 +19,11 @@ public class UsersDaoImpl extends BaseDaoImpl<User, String> implements UsersDao{
 
     @Override
     public int findBySqlCount(String sql, Object... params) {
-        return super.fingBySqlCount(sql, params);
+        return super.findBySqlCount(sql, params);
+    }
+
+    public long getCount(Searchable searchable) {
+        return 0;
     }
 
 }

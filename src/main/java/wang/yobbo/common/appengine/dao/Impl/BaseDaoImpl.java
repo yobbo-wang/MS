@@ -4,9 +4,8 @@ import net.sf.ehcache.config.Searchable;
 import org.hibernate.transform.Transformers;
 import org.springframework.data.domain.Page;
 import org.springframework.util.Assert;
-import wang.yobbo.common.appengine.dao.BaseDao;
 import wang.yobbo.common.appengine.BaseDaoManager;
-import wang.yobbo.common.appengine.entity.AbstractEntity;
+import wang.yobbo.common.appengine.dao.BaseDao;
 
 import javax.persistence.Query;
 import javax.persistence.TemporalType;
@@ -15,7 +14,6 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.sql.Time;
 import java.sql.Timestamp;
-import java.time.Instant;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -53,7 +51,7 @@ public class BaseDaoImpl<E, ID extends Serializable> implements BaseDao<E, ID>{
 
 
     public Long count(Searchable v0) {
-        return null;
+        return this.count(v0);
     }
 
     public long count() {
@@ -64,7 +62,7 @@ public class BaseDaoImpl<E, ID extends Serializable> implements BaseDao<E, ID>{
         return null;
     }
 
-    public List<E> fingPageWithoutCount(Searchable v0) {
+    public List<E> findPageWithoutCount(Searchable v0) {
         return null;
     }
 
@@ -113,15 +111,32 @@ public class BaseDaoImpl<E, ID extends Serializable> implements BaseDao<E, ID>{
     }
 
     /**
+     * 根据自定义sql更新
+     * @param sql 自定义sql
+     * @param var0 参数数组
+     * @return 返回影响行数
+     */
+    public int updateBysql(String sql, Object ...var0){
+        Assert.notNull(sql, "sql must not null.");
+        Query query = this.getBaseDaoManager().getEntityManager().createNativeQuery(sql);
+        this.setParameter(query, var0);
+        return query.executeUpdate();
+    }
+
+    /**
      * 自定义sql查询记录数
      * @param sql 自定义sql
      * @param var0 参数数组
      * @return 记录数
      */
-    public int fingBySqlCount(String sql, Object ...var0){
+    public int findBySqlCount(String sql, Object ...var0){
+        Assert.notNull(sql, "sql must not null.");
+        sql = "select count(1) as COUNT from ( " + sql + ") a";
         Query query = this.getBaseDaoManager().getEntityManager().createNativeQuery(sql);
+        query.unwrap(org.hibernate.SQLQuery.class).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP); //查询结果返回MAP
         this.setParameter(query, var0);
-        return query.getResultList().size();
+        Map map = (Map)query.getSingleResult();
+        return map != null ? Integer.valueOf(map.get("COUNT").toString()): 0;
     }
 
     /**
@@ -131,6 +146,7 @@ public class BaseDaoImpl<E, ID extends Serializable> implements BaseDao<E, ID>{
      * @return 返回List<Map>结果集
      */
     public List<Map> fingBySqlList(String sql, Object ...var0){
+        Assert.notNull(sql, "sql must not null.");
         Query query = this.getBaseDaoManager().getEntityManager().createNativeQuery(sql);
         query.unwrap(org.hibernate.SQLQuery.class).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP); //查询结果返回MAP
         this.setParameter(query, var0);
@@ -144,6 +160,7 @@ public class BaseDaoImpl<E, ID extends Serializable> implements BaseDao<E, ID>{
      * @return 返回Map结果集
      */
     public Map findBySqlOne(String sql, Object... var0) {
+        Assert.notNull(sql, "sql must not null.");
         Query query = this.getBaseDaoManager().getEntityManager().createNativeQuery(sql);
         query.unwrap(org.hibernate.SQLQuery.class).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP); //查询结果返回MAP
         this.setParameter(query, var0);

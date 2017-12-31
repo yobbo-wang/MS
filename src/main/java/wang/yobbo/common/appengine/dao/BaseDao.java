@@ -30,7 +30,7 @@ public interface BaseDao<E, ID extends Serializable> {
      * @param v0
      * @return
      */
-    List<E> fingPageWithoutCount(Searchable v0);
+    List<E> findPageWithoutCount(Searchable v0);
 
     Page<E> find(Searchable var0, E var1);
 

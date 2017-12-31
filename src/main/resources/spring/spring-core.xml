@@ -11,5 +11,75 @@
     </context:component-scan>
 
     <!-- shiro相关 -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="userRealm"></property>
+        <property name="sessionManager" ref="sessionManager"></property>
+        <property name="rememberMeManager" ref="rememberMeManager"></property>
+    </bean>
+
+    <!-- 用户认证 -->
+    <bean id="userRealm" class="wang.yobbo.common.security.realm.CustomAuthoringRealm">
+        <property name="authenticationCachingEnabled" value="false" />
+        <property name="authorizationCachingEnabled" value="false" />
+    </bean>
+
+    <!-- cookie设置 -->
+    <bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+        <!--<property name="cipherKey"
+                  value="#{T(org.apache.shiro.codec.Base64).decode('${shiro.uid.rememeberMe.cookie.base64.cipherKey}')}" />-->
+        <property name="cipherKey"
+                  value="#{T(org.apache.shiro.codec.Base64).decode('mdBwhDfA+DUo39XaSadC9Q==')}" />
+        <property name="cookie" >
+            <bean class="org.apache.shiro.web.servlet.SimpleCookie">
+                <constructor-arg value="${shiro.uid.rememeberMe.cookie.name}" />
+                <property name="domain" value="${shiro.uid.cookie.domain}" />
+                <property name="path" value="${shiro.uid.cookie.path}" />
+                <property name="httpOnly" value="${shiro.uid.cookie.httpOnly}" />
+                <property name="maxAge" value="${shiro.uid.rememeberMe.cookie.maxAge}" />
+            </bean>
+        </property>
+    </bean>
+
+    <!-- Shiro的Web过滤器 -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+    </bean>
+
+    <!-- session 管理 -->
+    <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+        <property name="sessionListeners">
+            <bean class="wang.yobbo.common.security.shiro.filter.CustomSessionListenerAdapter"></bean>
+        </property>
+        <property name="globalSessionTimeout" value="${shiro.session.globalSessionTimeout}"></property>
+        <!--<property name="sessionDAO" ref="${cacheManagerTpye}ShiroSessionDAO" />-->
+        <property name="sessionDAO" >
+            <bean class="org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO"></bean>
+        </property>
+        <property name="deleteInvalidSessions" value="false" />
+        <property name="sessionValidationInterval" value="${shiro.session.validation.interval}" />
+        <property name="sessionValidationSchedulerEnabled" value="true" />
+        <property name="sessionValidationScheduler">
+            <!--会话验证调度-->
+            <bean class="org.apache.shiro.session.mgt.ExecutorServiceSessionValidationScheduler">
+                <property name="interval" value="${shiro.session.validation.interval}" />
+                <property name="sessionManager" ref="sessionManager" />
+            </bean>
+        </property>
+        <!--<property name="cacheManager" ref="${cacheManagerTpye}ShiroCacheManager"/>-->
+        <property name="cacheManager">
+            <bean class="org.apache.shiro.cache.ehcache.EhCacheManager"></bean>
+        </property>
+        <property name="sessionIdCookieEnabled" value="true" />
+        <property name="sessionIdCookie">
+            <!-- 设置cookie -->
+            <bean class="org.apache.shiro.web.servlet.SimpleCookie">
+                <constructor-arg value="${shiro.uid.cookie.name}" />
+                <property name="domain" value="${shiro.uid.cookie.domain}" />
+                <property name="path" value="${shiro.uid.cookie.path}" />
+                <property name="httpOnly" value="${shiro.uid.cookie.httpOnly}" />
+                <property name="maxAge" value="${shiro.uid.cookie.maxAge}" />
+            </bean>
+        </property>
+    </bean>
 
 </beans>

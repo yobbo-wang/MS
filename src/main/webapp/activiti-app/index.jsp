@@ -139,12 +139,31 @@
 <script type="text/javascript">
 	//左边列表收缩展开
 	function stencilsListDispaly() {
-        jQuery('#paletteHelpWrapper').width('2%');
-        var palette = jQuery('#paletteSection');
-        palette.children()[1].style.display = "none";
-        palette.css({"background-color": "#d8d7d7"});
-        jQuery('#canvasHelpWrapper').width('98%');
-        jQuery('#propertiesHelpWrapper').width('98%');
+	    switch (window.accordion){
+			case 'close':
+                jQuery('#paletteHelpWrapper')[0].style.cssText = "padding-left: 0;padding-right: 0;";
+                jQuery('#stencils-process-name').text('流程设计器');
+                jQuery('#stencils-process').css({'border-width': '0 0 1px 1px'});
+                jQuery(jQuery('#stencils-process-right').children()[0]).css({"background" : "url(editor-app/stencilsets/bpmn2.0/icons/activity/list/layout_arrows.png) no-repeat 0 0"});
+                var palette = jQuery('#paletteSection');
+                palette.children()[1].style.display = "block";
+                palette.css({"background-color": ""});
+                jQuery('#canvasHelpWrapper')[0].style.cssText = "padding-left: 0;padding-right: 0;";
+                jQuery('#propertiesHelpWrapper')[0].style.cssText = "padding-left: 0;padding-right: 0;";
+                window.accordion = 'open';
+			break;
+            default :
+                jQuery('#paletteHelpWrapper').width('2%');
+                jQuery('#stencils-process-name').text('');
+                jQuery('#stencils-process').css({'border-width': '0'});
+                jQuery(jQuery('#stencils-process-right').children()[0]).css({"background" : "url(editor-app/stencilsets/bpmn2.0/icons/activity/list/layout_arrows.png) no-repeat 0 -16px"});
+                var palette = jQuery('#paletteSection');
+                palette.children()[1].style.display = "none";
+                palette.css({"background-color": "#d8d7d7"});
+                jQuery('#canvasHelpWrapper').width('98%');
+                jQuery('#propertiesHelpWrapper').width('98%');
+                window.accordion = 'close';
+		}
     }
 </script>
 </body>

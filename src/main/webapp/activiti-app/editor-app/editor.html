@@ -28,20 +28,21 @@
       <div class="row row-no-gutter">
 	      <div id="paletteHelpWrapper" class="col-xs-2" style="padding-left:0;padding-right: 0;">
 	      	<div class="stencils" id="paletteSection">
-				<div style="margin-top:0;background-color: #a9b4b7;">
-					<a onclick="javascript:stencilsListDispaly();">
-						<img src="editor-app/stencilsets/bpmn2.0/icons/activity/list/list.png" style="width: 25px;height: 25px;">
-					</a>
+				<div id="stencils-process" style="border-color: #a4acb9;padding: 5px;position: relative;border-width: 0 0 1px 1px;border-style: solid;margin-top: 0px;">
+					<div id="stencils-process-name" style="height: 16px;line-height: 16px;font-size: 12px;font-weight: bold;margin-top: 0;margin-bottom: 0;">流程设计器</div>
+					<div id="stencils-process-right" style="right: 5px;width: auto;position: absolute;top: 50%;margin-top: -8px;height: 16px;overflow: hidden;">
+						<a onclick="javascript:stencilsListDispaly();" style="display: inline-block;width: 16px;height: 16px;margin: 0 0 0 2px;
+						vertical-align: top;border-radius: 3px 3px 3px 3px;
+						background: url(editor-app/stencilsets/bpmn2.0/icons/activity/list/layout_arrows.png) no-repeat 0 0;">
+						</a>
+					</div>
 				</div>
 			    <div ng-if="stencilItemGroups.length > 1">
                     <div ng-repeat="group in stencilItemGroups">
-
                         <ul ng-if="group.visible && group.items" class="stencil-group"  ng-class="{collapsed: !group.expanded, 'first': $first}">
                             <li ng-include="'editor-app/partials/stencil-item-template.html?version=4'"></li>
                         </ul>
-
                         <div ng-if="!group.items" ng-include="'editor-app/partials/root-stencil-item-template.html?version=4'"></div>
-
                     </div>
 			    </div>
 			    <div ng-if="stencilItemGroups.length == 1">
@@ -53,7 +54,6 @@
 	                         data-drag="true"
 	                         jqyoui-draggable="{onStart:'startDragCallback', onDrag:'dragCallback'}"
 	                         data-jqyoui-options="{revert: 'invalid', helper: 'clone', opacity : 0.5}">
-	                         
 	                        <img ng-src="editor-app/stencilsets/bpmn2.0/icons/{{item.icon}}" width="16px;" height="16px;"/>
 	                        {{item.name}}
 	                    </li>

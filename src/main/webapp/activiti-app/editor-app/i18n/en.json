@@ -35,6 +35,7 @@
     "TOOLBAR.ACTION.MOVE" : "移动",
     "TOOLBAR.ACTION.IMPORT" : "导入",
     "TOOLBAR.ACTION.EXPORT" : "导出",
+    "TOOLBAR.ACTION.BENDPOINT.IMPORT" : "导入",
     "TOOLBAR.ACTION.BENDPOINT.ADD" : "Add bend-point to the selected sequence flow",
     "TOOLBAR.ACTION.BENDPOINT.REMOVE" : "Remove bend-point from the selected sequence flow",
     "TOOLBAR.ACTION.ALIGNHORIZONTAL" : "Align model horizontal",

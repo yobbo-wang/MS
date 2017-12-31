@@ -33,9 +33,8 @@
     <logback-ext-spring.version>0.1.1</logback-ext-spring.version>
     <activiti.version>5.22.0</activiti.version>
     <batik.version>1.7</batik.version>
-    <!-- aop dependency lib version -->
     <aspectjweaver.version>1.8.11</aspectjweaver.version>
-    <!-- shrio libs version -->
+    <shiro.version>1.3.2</shiro.version>
   </properties>
   <dependencies>
     <dependency>
@@ -283,6 +282,31 @@
       <artifactId>batik-svggen</artifactId>
       <version>${batik.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.apache.shiro</groupId>
+      <artifactId>shiro-core</artifactId>
+      <version>${shiro.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.shiro</groupId>
+      <artifactId>shiro-web</artifactId>
+      <version>${shiro.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.shiro</groupId>
+      <artifactId>shiro-spring</artifactId>
+      <version>${shiro.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.shiro</groupId>
+      <artifactId>shiro-ehcache</artifactId>
+      <version>${shiro.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.shiro</groupId>
+      <artifactId>shiro-cas</artifactId>
+      <version>${shiro.version}</version>
+    </dependency>
 
   </dependencies>
   <build>
@@ -337,6 +361,7 @@
         <log.root.level>DEBUG</log.root.level>
         <log.max.size>10kb</log.max.size>
         <log.stdout.ref><![CDATA[<appender-ref ref="stdout" />]]></log.stdout.ref>
+        <cacheManagerTpye>ehcache</cacheManagerTpye>
       </properties>
     </profile>
     <profile>
@@ -355,6 +380,7 @@
         <log.root.level>DEBUG</log.root.level>
         <log.max.size>10kb</log.max.size>
         <log.stdout.ref><![CDATA[<appender-ref ref="stdout" />]]></log.stdout.ref>
+        <cacheManagerTpye>ehcache</cacheManagerTpye>
       </properties>
     </profile>
   </profiles>

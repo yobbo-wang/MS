@@ -1,5 +1,6 @@
 package wang.yobbo.user.test;
 
+import org.apache.shiro.codec.Base64;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import wang.yobbo.sys.dao.UsersDao;
 
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -19,6 +23,18 @@ import java.util.Date;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:spring/spring-root.xml")
 public class UserTest {
+
+    public static void main(String[] s) {
+        KeyGenerator keygen = null;
+        try {
+            keygen = KeyGenerator.getInstance("AES");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        SecretKey deskey = keygen.generateKey();
+        System.out.println(Base64.encodeToString(deskey.getEncoded()));
+    }
+
     @Autowired
     UsersDao usersDao;
 
