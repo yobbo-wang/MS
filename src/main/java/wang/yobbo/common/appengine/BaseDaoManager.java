@@ -2,16 +2,20 @@ package wang.yobbo.common.appengine;
 
 import net.sf.ehcache.config.Searchable;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
 import org.springframework.data.jpa.repository.support.JpaEntityInformationSupport;
 import org.springframework.orm.jpa.SharedEntityManagerCreator;
 import org.springframework.util.Assert;
 import wang.yobbo.common.appengine.dao.Impl.BaseDaoImpl;
-import wang.yobbo.common.appengine.entity.AbstractEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
+import javax.persistence.TemporalType;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -47,9 +51,6 @@ public final class BaseDaoManager {
             this.countAllJPQLL = String.format(COUNT_QUERY_STRING, this.entityName);
             this.findAllJPQL = String.format(FIND_QUERY_STRING , this.entityName);
         }
-        System.out.println(this.entityClass);
-        System.out.println(this.entityName);
-        System.out.println(this.IDName);
     }
 
     public static void setEntityManagerFactory(EntityManagerFactory entityManagerFactory) {
@@ -63,12 +64,37 @@ public final class BaseDaoManager {
 
     /**
      * 查询所有结果集
-     * @param <T>
-     * @return
+     * @param <T> 实体
+     * @return 结果集
      */
     public <T>List<T> findAll(){
-//        return this.findAll(this.findAllJPQL, new Object[0]);
-        return null;
+        Assert.notNull(this.entityClass, "Entity must not null, please set Entity.");
+        return this.findAll(this.findAllJPQL, new Object[0]);
+    }
+
+    private <T> List<T> findAll(String hql, Object... params) {
+        return this.findAll(hql, (Pageable)null, params);
+    }
+
+    private  <T> List<T> findAll(String hql, Pageable pageable, Object... params) {
+        Query query = this.getEntityManager().createQuery(hql + this.prepareOrder(pageable != null ? pageable.getSort() : null));
+        this.setParameter(query, params);
+        if(pageable != null) {
+            query.setFirstResult(pageable.getOffset());
+            query.setMaxResults(pageable.getPageSize());
+        }
+        return query.getResultList();
+    }
+
+    private String prepareOrder(Sort sort) {
+        if(sort != null && sort.iterator().hasNext()) {
+            StringBuilder orderBy = new StringBuilder("");
+            orderBy.append(" order by ");
+            orderBy.append(sort.toString().replace(":", " "));
+            return orderBy.toString();
+        } else {
+            return "";
+        }
     }
 
     /**
@@ -86,7 +112,31 @@ public final class BaseDaoManager {
 //        searchCallback.prepareNXQL(s, searchable);
         Query query = this.getEntityManager().createQuery(s.toString());
 //        searchCallback.setValues(query, searchable);
-        return ((Long)query.getSingleResult()).longValue();
+        return (Long) query.getSingleResult();
+    }
+
+    /**
+     * 设置sql参数公共处理方法
+     * @param query
+     * @param var0
+     */
+    public void setParameter(Query query, Object ... var0){
+        if(query.getParameters().size() != var0.length) {
+            throw new RuntimeException("参数个数与设值个数不相等。");
+        }
+        for(int i=0;i<var0.length;i++){
+            int index = i + 1;
+            Object param = var0[i];
+            if(param instanceof Date){
+                query.setParameter(index, (Date) param, TemporalType.DATE); //转换成日期格式Date.from(Instant.parse(param.toString()))
+            }
+            else if(param instanceof Calendar){
+                query.setParameter(index, (Calendar)param, TemporalType.DATE);
+            }
+            else{
+                query.setParameter(index, param);
+            }
+        }
     }
 
 }

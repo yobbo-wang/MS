@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import wang.yobbo.sys.dao.UsersDao;
+import wang.yobbo.sys.entity.User;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
@@ -15,6 +16,7 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by xiaoyang on 2017/12/28.
@@ -36,7 +38,7 @@ public class UserTest {
     }
 
     @Autowired
-    UsersDao usersDao;
+    private UsersDao usersDao;
 
     @Test
     public void testFindBySql(){
@@ -58,5 +60,13 @@ public class UserTest {
     @Test
     public void findBySqlCount(){
         System.out.println(this.usersDao.findBySqlCount("SELECT * FROM `act_hi_actinst`"));
+    }
+
+    @Test
+    public void findAll(){
+        List<User> all = this.usersDao.findUserAll();
+        for (User user : all){
+            System.out.println(user.getName());
+        }
     }
 }

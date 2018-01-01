@@ -71,7 +71,7 @@ public class BaseDaoImpl<E, ID extends Serializable> implements BaseDao<E, ID>{
     }
 
     public List<E> findAll() {
-        return null;
+        return this.getBaseDaoManager().findAll();
     }
 
     public List<E> findAll(E var0) {
@@ -119,7 +119,7 @@ public class BaseDaoImpl<E, ID extends Serializable> implements BaseDao<E, ID>{
     public int updateBysql(String sql, Object ...var0){
         Assert.notNull(sql, "sql must not null.");
         Query query = this.getBaseDaoManager().getEntityManager().createNativeQuery(sql);
-        this.setParameter(query, var0);
+        baseDaoManager.setParameter(query, var0);
         return query.executeUpdate();
     }
 
@@ -134,7 +134,7 @@ public class BaseDaoImpl<E, ID extends Serializable> implements BaseDao<E, ID>{
         sql = "select count(1) as COUNT from ( " + sql + ") a";
         Query query = this.getBaseDaoManager().getEntityManager().createNativeQuery(sql);
         query.unwrap(org.hibernate.SQLQuery.class).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP); //查询结果返回MAP
-        this.setParameter(query, var0);
+        baseDaoManager.setParameter(query, var0);
         Map map = (Map)query.getSingleResult();
         return map != null ? Integer.valueOf(map.get("COUNT").toString()): 0;
     }
@@ -149,7 +149,7 @@ public class BaseDaoImpl<E, ID extends Serializable> implements BaseDao<E, ID>{
         Assert.notNull(sql, "sql must not null.");
         Query query = this.getBaseDaoManager().getEntityManager().createNativeQuery(sql);
         query.unwrap(org.hibernate.SQLQuery.class).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP); //查询结果返回MAP
-        this.setParameter(query, var0);
+        baseDaoManager.setParameter(query, var0);
         return query.getResultList();
     }
 
@@ -163,38 +163,9 @@ public class BaseDaoImpl<E, ID extends Serializable> implements BaseDao<E, ID>{
         Assert.notNull(sql, "sql must not null.");
         Query query = this.getBaseDaoManager().getEntityManager().createNativeQuery(sql);
         query.unwrap(org.hibernate.SQLQuery.class).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP); //查询结果返回MAP
-        this.setParameter(query, var0);
+        baseDaoManager.setParameter(query, var0);
         Object row = query.getSingleResult();
         return (Map)row;
     }
 
-    /**
-     * 设置sql参数公共处理方法
-     * @param query
-     * @param var0
-     */
-    private void setParameter(Query query, Object ... var0){
-        if(query.getParameters().size() != var0.length) {
-            throw new RuntimeException("参数个数与设值个数不相等。");
-        }
-        for(int i=0;i<var0.length;i++){
-            int index = i + 1;
-            Object param = var0[i];
-            if(param instanceof Date){
-                query.setParameter(index, (Date) param, TemporalType.DATE); //转换成日期格式Date.from(Instant.parse(param.toString()))
-            }
-            else if(param instanceof Time){
-                query.setParameter(index, (Date) param, TemporalType.TIME); //time格式
-            }
-            else if(param instanceof Timestamp){
-                query.setParameter(index, (Date) param, TemporalType.TIMESTAMP); //时间戳
-            }
-            else if(param instanceof Calendar){
-                query.setParameter(index, (Calendar)param, TemporalType.DATE);
-            }
-            else{
-                query.setParameter(index, param);
-            }
-        }
-    }
 }
