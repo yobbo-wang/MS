@@ -1,23 +1,56 @@
 package wang.yobbo.sys.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import wang.yobbo.sys.dao.UsersDao;
+import net.sf.ehcache.config.Searchable;
+import wang.yobbo.sys.entity.User;
 
-@Service
-public class SysService{
+import java.util.List;
+import java.util.Map;
 
-    @Autowired
-    private UsersDao usersDao;
+public interface SysService{
+    /**
+     * 根据自定义sql查询数据结果集
+     * @param sql 自定sql
+     * @param params 参数数组
+     */
+    Map findBySqlOne(String sql, Object...params);
 
-    public void getInfo(){
+    /**
+     * 根据自定义sql查询数据结果集记录数
+     * @param sql 自定sql
+     * @param params 参数数组
+     */
+    int findBySqlCount(String sql, Object ...params);
 
-    }
+    /**
+     * 获取结果集个数
+     * @param searchable
+     * @return
+     */
+    long getCount(Searchable searchable);
 
-    /*//只要是方法除去查询的关键字开头的外，都是开启事务，直到方法执行完毕
-    public void updateInfo(Accounts a1, Accounts a2){
-        this.accountsService.updateOutMenoy(a1);
-        int s = 1 / 0;
-        this.accountsService.updateInMenoy(a2);
-    }*/
+    /**
+     * 获取所有实体所有结果集
+     * @return
+     */
+    List<User> findUserAll();
+
+    /**
+     * 根据实体值，获取所有结果集
+     * @param user
+     * @return
+     */
+    List<User> findUserAll(User user);
+
+    /**
+     * 根据主键ID批量删除
+     * @param primaryKey
+     * @return
+     */
+    int deleteByPrimaryKeys(String ... primaryKey);
+
+    void deleteForSysUser(User user);
+
+    User update(User user);
+
+    User save(User user);
 }

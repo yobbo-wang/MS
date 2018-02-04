@@ -1,0 +1,239 @@
+@charset "UTF-8";
+/*
+人员签到table左右调整列宽
+*/
+.rc-handle-container {position: relative;}
+
+.rc-handle {
+  position: absolute;
+  width: 7px;
+  cursor: ew-resize;
+  margin-left: -3px;
+}
+.table-resiz{
+	width:100%;
+	border-collapse:separate;
+	border:1px solid #95B8E7;
+}
+.table-resiz tr.sizetr th,
+.table-resiz tr.sizetr td{
+	border-width:1px;
+	border-style: solid;
+	border-color: #95B8E7;
+	overflow:hidden;
+	margin:0px;
+	padding:0px;
+	text-align:left;
+}
+.table-resiz tr.sizetr td{
+	border-top:1px solid #95B8E7;
+}
+.table-resiz thead tr.sizetr{
+	border-bottom:1px solid #95B8E7;
+}
+.table-resiz thead tr.sizetr th{
+	border-bottom:1px solid #95B8E7;
+	font-family:'微软雅黑';
+	padding-left: 10px;
+	height: 30px;
+    font-size: 14px;
+    color:inherit;
+    color:#0175BC;
+    background-color: #F8F8F7;
+    background: -webkit-linear-gradient(top,#F8F8F7 0,#ECEAE8 100%);
+    background: -moz-linear-gradient(top,#F8F8F7 0,#ECEAE8 100%);
+    background: -o-linear-gradient(top,#F8F8F7 0,#ECEAE8 100%);
+    background: linear-gradient(to bottom,#F8F8F7 0,#ECEAE8 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#F8F8F7,endColorstr=#ECEAE8,GradientType=0);
+}
+.table-resiz tr.sizetr th.thLeft{
+	width:250px;
+	overflow: hidden;
+}
+.table-resiz tr.sizetr th.thRight{
+	min-width:300px;
+}
+.table-resiz tr.sizetr th.thRight{
+
+	/*min-width:859px;*/
+}
+.sign-all{
+	width:100%;
+	margin:0px auto 0px;
+	text-align: center;
+	padding:10px 0px 0px 0px;
+	border-bottom: 1px solid #1A6FA4;
+	border-top: 1px solid #aaa;
+    padding-bottom: 10px;
+    /*clear:both;*/
+    /*overflow:hidden;*/
+}
+.sign-all .btnSave{		
+	font-size:30px;
+}
+.sign-all .btnSaveDisable{
+	cursor:no-drop;
+	opacity:0.4;
+}
+
+.typeTitle{
+	clear: both;
+	width:100%;
+	height:30px;
+	font-size:14px;
+	font-family: '微软雅黑';
+	cursor: pointer;
+	font-weight: bold;
+	line-height:30px;
+	text-align: center;
+	border-width:0px 0px 1px 0px;
+    border-style: solid;
+    border-color: #95B8E7;
+    background-color: #ececec;
+    text-overflow:ellipsis;-o-text-overflow:ellipsis;overflow:hidden;white-space:nowrap;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f4f4f4), to(#ececec));
+    background-image: -moz-linear-gradient(#f4f4f4, #ececec);
+    background-image: -ms-linear-gradient(#f4f4f4, #ececec);
+    background-image: -o-linear-gradient(#f4f4f4, #ececec);
+    background-image: linear-gradient(#f4f4f4, #ececec);
+}
+.sign-in-menu.list-item li a{
+	background-color: #FFF !important;
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#FFF), to(#FFF)) !important;
+	background-image: -moz-linear-gradient(#FFF, #FFF) !important;
+	background-image: -ms-linear-gradient(#FFF, #FFF) !important;
+	background-image: -o-linear-gradient(#FFF, #FFF) !important;
+	background-image: linear-gradient(#FFF, #FFF) !important;
+}
+.sign-in-menu.list-item li a:hover, 
+.sign-in-menu.list-item li a.active{
+	background-color:#FFFFA6 !important;
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#FFFFA6), to(#FFFFA6)) !important;
+	background-image: -moz-linear-gradient(#FFFFA6, #FFFFA6) !important;
+	background-image: -ms-linear-gradient(#FFFFA6, #FFFFA6) !important;
+	background-image: -o-linear-gradient(#FFFFA6, #FFFFA6) !important;
+	background-image: linear-gradient(#FFFFA6,#FFFFA6) !important;
+	color:#1230D2;
+}
+.table-resiz tr.sizetr td.td-left, 
+.table-resiz tr.sizetr td.td-right{
+	vertical-align:top;
+}
+
+.sign-in-menu .fieldset-box legend,.con-dset legend{
+	margin-top: -16px;
+    margin-left: 10px;
+	padding:5px;
+	width:5em;
+	line-height:14px;
+	border-width:1px;
+    border-style: solid;
+    border-color: #c0c0c0;
+    width:100px;
+    text-align:center;
+    background:#FFF;
+}
+.con-dset{
+    border: 1px solid #c0c0c0;
+    margin:5px 2px;
+    clear:both;
+}
+.con-dset .ovh{
+	overflow: hidden;
+	margin: 0px auto;
+    width: 751px;
+}
+
+.table-sign{
+	margin-left: 10px;
+	min-width: 700px;
+}
+.table-sign .signTr{
+	line-height:25px;
+	clear:both;
+}
+.table-sign .signTr div{
+	float:left;	
+	border-width:1px 1px 1px 0px;
+	border-color:#ddd;
+	border-style: solid;
+	width:14%;
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	-o-text-overflow:ellipsis;
+	-icab-text-overflow: ellipsis;
+	-khtml-text-overflow: ellipsis;
+	-moz-text-overflow: ellipsis;
+	-webkit-text-overflow: ellipsis; 
+	font-family:'微软雅黑';
+}
+.table-sign .signTr div:first-child{
+	border-left-width:1px;
+}
+.table-sign .signTr.signTitle div{
+	font-weight:bold;
+	background: #F0F0F0;
+	text-align:left;
+	overflow:hidden;
+	padding:5px;
+}
+.table-sign .signTr.signCont div{
+	text-align:left;
+	padding:5px;
+	border-top-width:0px;
+	height:30px;
+}
+.table-sign .signTr.signCont:nth-of-type(odd) div{
+    background-color: #f9f9f9;
+    overflow:hidden;
+}
+/*.table-sign .signTr.signCont:nth-of-type(odd) div{
+    background-color: #f9f9f9;
+    overflow:hidden;
+}*/
+.table-sign .signTr.signCont div:hover{
+    background-color: #f9f9f9;
+    overflow:hidden;
+}
+.mSB-tool{
+	height:300px;
+	overflow:auto;
+	margin-bottom:10px;
+	clear:both;
+}
+.mSB-tool .mCustomScrollBox .mCSB_container{
+	/*margin-right:10px;
+	width:auto;*/
+}
+.title-wh{
+	min-width:100px;
+}
+.post-wh{
+	min-width:100px;
+}
+.job-wh{
+	min-width:70px;
+}
+.name-wh{
+	min-width:80px;
+}
+.iphone-wh{
+	min-width:80px;
+}
+.email-wh{
+	min-width:90px;
+}
+.type-wh{
+	min-width:105px;
+}
+.type-wh .btnSave{
+	margin-left:20px;
+	height:25px;
+	line-height:20px;
+	padding: 2px 4px;
+}
+.mSB-tool .mCSB_scrollTools{
+	margin-right:10px;
+}
+#planEvaList{height:100%;overflow-y:auto;max-height:600px;background:#ffffff;}

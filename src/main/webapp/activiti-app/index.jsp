@@ -159,7 +159,7 @@
                 jQuery(jQuery('#stencils-process-right').children()[0]).css({"background" : "url(editor-app/stencilsets/bpmn2.0/icons/activity/list/layout_arrows.png) no-repeat 0 -16px"});
                 var palette = jQuery('#paletteSection');
                 palette.children()[1].style.display = "none";
-                palette.css({"background-color": "#d8d7d7"});
+                palette.css({"background-color": "#ffffff"});
                 jQuery('#canvasHelpWrapper').width('98%');
                 jQuery('#propertiesHelpWrapper').width('98%');
                 window.accordion = 'close';

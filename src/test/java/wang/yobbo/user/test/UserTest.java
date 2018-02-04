@@ -1,13 +1,14 @@
 package wang.yobbo.user.test;
 
+import net.sf.ehcache.config.Searchable;
 import org.apache.shiro.codec.Base64;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import wang.yobbo.sys.dao.UsersDao;
 import wang.yobbo.sys.entity.User;
+import wang.yobbo.sys.service.SysService;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
@@ -15,7 +16,6 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -38,14 +38,14 @@ public class UserTest {
     }
 
     @Autowired
-    private UsersDao usersDao;
+    private SysService sysService;
 
     @Test
     public void testFindBySql(){
-        String sql = " SELECT * FROM `act_re_model` where ID_ = ?1 and CREATE_TIME_ >= ?2 and CREATE_TIME_ <= ?3";
+        String sql = " SELECT * FROM act_re_model where ID_ = ?1 and CREATE_TIME_ >= ?2 and CREATE_TIME_ <= ?3";
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         try {
-            this.usersDao.findBySql(sql, 1, sdf.parse("2017-1-1").getTime(),
+            this.sysService.findBySqlOne(sql, 1, sdf.parse("2017-1-1").getTime(),
                     new Timestamp(System.currentTimeMillis()));
         } catch (ParseException e) {
             e.printStackTrace();
@@ -54,19 +54,61 @@ public class UserTest {
 
     @Test
     public void testOne(){
-        this.usersDao.findBySql("SELECT * FROM `act_hi_actinst`");
+        System.out.println(this.sysService.findBySqlOne("SELECT * FROM bcm_sys_users"));
     }
 
     @Test
     public void findBySqlCount(){
-        System.out.println(this.usersDao.findBySqlCount("SELECT * FROM `act_hi_actinst`"));
+        System.out.println(this.sysService.findBySqlCount("SELECT * FROM act_hi_actinst"));
     }
 
     @Test
     public void findAll(){
-        List<User> all = this.usersDao.findUserAll();
+        List<User> all = this.sysService.findUserAll();
         for (User user : all){
             System.out.println(user.getName());
         }
+    }
+
+    @Test
+    public void getCount(){
+        Searchable searchable = new Searchable();
+//        searchable.addSearchAttribute(");
+        long count = this.sysService.getCount(searchable);
+        System.out.println(count);
+    }
+
+    @Test
+    public void delete(){
+        int count = this.sysService.deleteByPrimaryKeys("2c9f8c0b61419751016141975d0e0000", "2c9f8c0b6141846b0161418474c50000");
+        System.out.println(count);
+    }
+
+    @Test
+    public void deleteByEntity(){
+        User user = new User();
+        user.setId("2c9f8c0b614183c201614183cbfe0000");
+        this.sysService.deleteForSysUser(user);
+    }
+
+    @Test
+    public void update(){
+//        User user = new User();
+//        user.setId("2c9f8c0b614183c201614183cbfe0000");
+//        user.setUsername("xioayang2");
+//        user.setName("121笑傲1212");
+//        user.setPwd("111111");
+//        User update = this.sysService.update(user);
+
+    }
+
+    @Test
+    public void save(){
+//        User user = new User();
+//        user.setUsername("xioayang12121");
+//        user.setName("笑傲");
+//        user.setPwd("12321321");
+//        User save = this.sysService.save(user);
+
     }
 }

@@ -12,6 +12,7 @@
 
     <!-- dataSource -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <property name="driverClassName" value="${db.driverClassName}"/>
         <property name="url" value="${db.url}" />
         <property name="username" value="${db.username}" />
         <property name="password" value="${db.password}" />
@@ -56,13 +57,12 @@
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" >
                 <property name="showSql" value="${jpa.showSql}" />
                 <property name="generateDdl" value="${jpa.generateDdl}" />
-                <!--<property name="database" value="${jpa.database}" />-->
+                <property name="database" value="${jpa.database}" />
                 <property name="databasePlatform" value="${jpa.databasePlatform}" />
             </bean>
         </property>
         <property name="jpaDialect"><bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" /></property>
         <property name="packagesToScan" value="wang.yobbo.**.entity"/>
-
        <property name="jpaPropertyMap">
             <map>
                 <entry key="hibernate.archive.autodetection" value="class"/>

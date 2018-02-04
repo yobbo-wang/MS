@@ -6,16 +6,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.util.Assert;
 import wang.yobbo.common.appengine.BaseDaoManager;
 import wang.yobbo.common.appengine.dao.BaseDao;
+import wang.yobbo.common.appengine.entity.AbstractEntity;
 
 import javax.persistence.Query;
-import javax.persistence.TemporalType;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.sql.Time;
-import java.sql.Timestamp;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,7 +21,7 @@ import java.util.Map;
  * 数据操作公共类
  * 如果父类没有指定是哪个实体对象，那DaoImpl里只能查询自定义sql。不能操作实体对象
  */
-public class BaseDaoImpl<E, ID extends Serializable> implements BaseDao<E, ID>{
+public class BaseDaoImpl<E extends AbstractEntity, ID extends Serializable> implements BaseDao<E, ID>{
     private BaseDaoManager baseDaoManager;
 
     private BaseDaoManager getBaseDaoManager(){
@@ -78,20 +75,44 @@ public class BaseDaoImpl<E, ID extends Serializable> implements BaseDao<E, ID>{
         return null;
     }
 
-    public E create(E var0) {
+    public E createOfEntity(E entity) {
         return null;
     }
 
-    public E save(E var0) {
-        return null;
+    /**
+     * 保存
+     * @param entity
+     * @return
+     */
+    public E saveOfEntity(E entity) {
+        return this.getBaseDaoManager().save(entity);
     }
 
-    public E update(E var0) {
-        return null;
+    /**
+     * 更新
+     * @param entity
+     * @return
+     */
+    public E updateOfEntity(E entity) {
+        return this.getBaseDaoManager().save(entity);
     }
 
-    public int delete(ID[] var0) {
-        return 0;
+    /**
+     * 根据实体ID，批量删除
+     * @param ids 主键ID数组
+     * @return
+     */
+    public int deleteById(ID ... ids) {
+        return this.getBaseDaoManager().delete(ids);
+    }
+
+    /**
+     * 根据实体删除数据
+     * @param entity
+     * @return
+     */
+    public void deleteOfEntity(E entity){
+        this.getBaseDaoManager().delete(entity);
     }
 
     public E get(Serializable var0) {
@@ -149,7 +170,7 @@ public class BaseDaoImpl<E, ID extends Serializable> implements BaseDao<E, ID>{
         Assert.notNull(sql, "sql must not null.");
         Query query = this.getBaseDaoManager().getEntityManager().createNativeQuery(sql);
         query.unwrap(org.hibernate.SQLQuery.class).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP); //查询结果返回MAP
-        baseDaoManager.setParameter(query, var0);
+        this.baseDaoManager.setParameter(query, var0);
         return query.getResultList();
     }
 
@@ -162,10 +183,13 @@ public class BaseDaoImpl<E, ID extends Serializable> implements BaseDao<E, ID>{
     public Map findBySqlOne(String sql, Object... var0) {
         Assert.notNull(sql, "sql must not null.");
         Query query = this.getBaseDaoManager().getEntityManager().createNativeQuery(sql);
-        query.unwrap(org.hibernate.SQLQuery.class).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP); //查询结果返回MAP
-        baseDaoManager.setParameter(query, var0);
-        Object row = query.getSingleResult();
-        return (Map)row;
+        query.unwrap(org.hibernate.SQLQuery.class).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP); // 查询结果返回MAP
+        this.baseDaoManager.setParameter(query, var0);
+        try{
+            Object row = query.getSingleResult();
+            return (Map)row;
+        }catch (Exception e){
+            return new HashMap();
+        }
     }
-
 }

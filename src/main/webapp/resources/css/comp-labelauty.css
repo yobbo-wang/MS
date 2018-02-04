@@ -1,0 +1,202 @@
+/* Prevent text and blocks selection */
+input.labelauty + label ::selection { background-color: rgba(255, 255, 255, 0); }
+input.labelauty + label ::-moz-selection { background-color: rgba(255, 255, 255, 0); }
+
+/* Hide original checkboxes. They are ugly! */
+input.labelauty { display: none !important; }
+
+/*
+ * Let's style the input
+ * Feel free to work with it as you wish!
+ */
+input.labelauty + label{
+	display: block;
+	font-size:2rem !important;
+	padding:8px 30px 8px 30px;
+	height:35px;
+	width:90px;
+	background-color:#1c84c6;
+	color:#FFFFFF;
+	cursor: pointer;
+	float: left;
+	display: table;
+
+	border-color:#3498db;
+	border-width: 1px;
+	border-style: solid;
+
+	border-radius: 3px 3px 3px 3px;
+	-moz-border-radius: 3px 3px 3px 3px;
+	-webkit-border-radius: 3px 3px 3px 3px;
+
+
+	transition: background-color 0.25s;
+	-moz-transition: background-color 0.25s;
+	-webkit-transition: background-color 0.25s;
+	-o-transition: background-color 0.25s;
+
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	-o-user-select: none;
+}
+input.labelauty + label:hover{
+	background-color: #ffffff;
+	border-color:#1c84c6;
+}
+/* Stylish text inside label */
+
+input.labelauty + label > span.labelauty-unchecked,
+input.labelauty + label > span.labelauty-checked{
+	display: inline-block;
+	line-height: 16px;
+	vertical-align: bottom;
+}
+
+/* Stylish icons inside label */
+
+input.labelauty + label > span.labelauty-unchecked-image,
+input.labelauty + label > span.labelauty-checked-image{
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	vertical-align: bottom;
+	background-repeat: no-repeat;
+	background-position: left center;
+	float: left;
+	left:18px;
+	margin-top: 0px;
+
+	transition: background-image 0.5s linear;
+	-moz-transition: background-image 0.5s linear;
+	-webkit-transition: background-image 0.5s linear;
+	-o-transition: background-image 0.5s linear;
+}
+
+/* When there's a label, add a little margin to the left */
+input.labelauty + label > span.labelauty-unchecked-image + span.labelauty-unchecked,
+input.labelauty + label > span.labelauty-checked-image + span.labelauty-checked{
+	margin-left:10px;
+	font-size:16px;
+}
+
+/* When not Checked */
+input.labelauty:not(:checked):not([disabled]) + label:hover{
+	background-color: #ffffff;
+	border-color:#1c84c6;
+	color: #1c84c6;
+}
+input.labelauty:not(:checked) + label > span.labelauty-checked-image{
+	display: none;
+}
+
+input.labelauty:not(:checked) + label > span.labelauty-checked{
+	display: none;
+}
+
+/* When Checked */
+input.labelauty:checked + label{
+	background-color:#FF4100;
+	border-color:#BE0000;
+	color: #ffffff;
+}
+
+input.labelauty:checked:not([disabled]) + label:hover{
+	background-color: #72c5fd;
+}
+input.labelauty:checked + label > span.labelauty-unchecked-image{
+	display: none;
+}
+
+input.labelauty:checked + label > span.labelauty-unchecked{
+	display: none;
+}
+
+input.labelauty:checked + label > span.labelauty-checked{
+	display: inline-block;
+}
+
+input.labelauty.no-label:checked + label > span.labelauty-checked{
+	display: block;
+}
+
+/* When Disabled */
+input.labelauty[disabled] + label{
+	opacity: 0.5;
+}
+
+/* Add a background to (un)checked images */
+input.labelauty + label > span.labelauty-unchecked-image{
+	background-image: url( ../images/input-unchecked.png );
+}
+
+input.labelauty + label > span.labelauty-checked-image{
+	/*background-image: url( ../images/input-checked.png );*/
+
+	background-image: url("../images/main/icons.png");
+	background-position:-51px -1477px;
+}
+.img-photo li{
+	margin-left:25px;
+}
+.img-photo li:first-child{
+	margin-left:0px;
+}
+.img-photo li span{
+	height: 35px;
+	font-family:'微软雅黑';
+	padding-top: 2px;
+	margin-top: -3px;
+}
+.img-photo li:first-child label .labelauty-unchecked-image{
+	margin-top:0px;
+	position:relative;
+	display:inline-block;
+	width:16px;
+	height:16px;
+	line-height:16px;
+	vertical-align:text-top;
+	background:url("../images/main/icons.png");
+	background-position: -218px -788px;
+	background-repeat:no-repeat;
+	left:-16px;
+}
+.img-photo li:nth-child(2) label .labelauty-unchecked-image{
+	margin-top:0px;
+	position:relative;
+	display:inline-block;
+	width:16px;
+	height:16px;
+	line-height:16px;
+	vertical-align:text-top;
+	background:url("../images/main/icons.png");
+	 background-position: -170px -411px;
+	background-repeat:no-repeat;
+	left:-16px;
+}
+.img-photo li:nth-child(3) label .labelauty-unchecked-image{
+	margin-top:0px;
+	position:relative;
+	display:inline-block;
+	width:16px;
+	height:16px;
+	line-height:16px;
+	vertical-align:text-top;
+	background:url("../images/main/icons.png");
+	background-position: -100px -433px;
+	background-repeat:no-repeat;
+	left:-16px;
+}
+.img-photo li:nth-child(4) label .labelauty-unchecked-image{
+	margin-top:0px;
+	position:relative;
+	display:inline-block;
+	width:16px;
+	height:16px;
+	line-height:16px;
+	vertical-align:text-top;
+	background:url("../images/main/icons.png");
+	background-position: -6px -1033px;
+	background-repeat:no-repeat;
+	left:-16px;
+}

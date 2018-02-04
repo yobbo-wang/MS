@@ -7,16 +7,14 @@ package wang.yobbo.common.appengine.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @MappedSuperclass
 public abstract class BaseEntity<ID extends Serializable> extends AbstractEntity<ID> {
+
     @Id
     @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "uuid")
@@ -32,7 +30,7 @@ public abstract class BaseEntity<ID extends Serializable> extends AbstractEntity
     public BaseEntity() {
     }
 
-    public ID getId() {
+   public ID getId() {
         return this.id;
     }
 

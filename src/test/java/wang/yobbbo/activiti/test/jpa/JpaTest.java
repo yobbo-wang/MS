@@ -1,6 +1,5 @@
 package wang.yobbbo.activiti.test.jpa;
 
-import com.vaadin.service.ApplicationContext;
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.runtime.ProcessInstance;
@@ -10,21 +9,10 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.web.context.ContextLoader;
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
-import wang.yobbo.common.spring.SpringContextUtil;
-import wang.yobbo.test.entity.LoanRequest;
-import wang.yobbo.test.service.LoanRequestBean;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static junit.framework.TestCase.assertNotNull;
-import static junit.framework.TestCase.assertTrue;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 
 /**
  * 利用activiti提供的测试类，测试activiti
@@ -62,21 +50,6 @@ public class JpaTest{
         System.out.println("name: " + loanRequestProcess.getName());//null
         System.out.println("ID: " + loanRequestProcess.getId()); //17501  25001
         System.out.println("Description: " + loanRequestProcess.getDescription());//null
-    }
-
-    //获取贷款相关信息
-    @Test
-    public void getLoadInfo(){
-        Object value = runtimeService.getVariable("25001", "loanRequest"); //返回实例对象
-        assertNotNull(value);
-        assertTrue(value instanceof LoanRequest); //断言
-        LoanRequest request = (LoanRequest) value;
-        System.out.println("ID为：" + request.getId());
-        System.out.println("NAME: " + request.getCustomerName());
-        System.out.println("Amount为: " + request.getAmount().longValue());
-        assertEquals("小杨", request.getCustomerName());
-        assertEquals(500000L, request.getAmount().longValue());
-        assertFalse(request.isApproved());
     }
 
     public void successLoad(){

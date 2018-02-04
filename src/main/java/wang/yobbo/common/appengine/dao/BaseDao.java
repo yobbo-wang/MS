@@ -12,7 +12,7 @@ import java.util.Map;
  * Created by xiaoyang on 2017/12/28.
  * 数据操作层公共封装接口
  */
-public interface BaseDao<E, ID extends Serializable> {
+public interface BaseDao<E extends AbstractEntity, ID extends Serializable> {
 
     /**
      * 获取记录数
@@ -46,13 +46,15 @@ public interface BaseDao<E, ID extends Serializable> {
      */
     List<E> findAll(E var0);
 
-    E create(E var0);
+    E createOfEntity(E var0);
 
-    E save(E var0);
+    E saveOfEntity(E var0);
 
-    E update(E var0);
+    E updateOfEntity(E var0);
 
-    int delete(ID... var0);
+    int deleteById(ID... var0);
+
+    void deleteOfEntity(E entity);
 
     E get(Serializable var0);
 

@@ -1,0 +1,6 @@
+/**form  table通用样式3, 适用于有6列的表格 **/
+.formtable3 {font-size: 14px;font-family:'微软雅黑'; border-collapse: collapse; width:100%;}
+.formtable3 .td_label {width:30%;text-align: right;padding: 5px;border-bottom: 1px solid #ccc;}
+.formtable3 .td_value {width:20%;text-align:left; padding: 5px;border-bottom: 1px solid #ccc;}
+.formtable3 .td_select {width:20%;text-align:left; padding: 5px;border-bottom: 1px solid #ccc;}
+.formtable3 .td_value input {border:1px solid #54A5D5;width:70%;padding:5px;}

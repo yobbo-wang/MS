@@ -7,6 +7,7 @@ import wang.yobbo.sys.dao.UsersDao;
 import wang.yobbo.sys.entity.User;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by xiaoyang on 2017/12/28.
@@ -15,10 +16,9 @@ import java.util.List;
 @Service
 public class UsersDaoImpl extends BaseDaoImpl<User, String> implements UsersDao{
 
-    public void findBySql(String sql, Object...params) {
-        System.out.println(super.findBySqlOne(sql, params));
+    public Map findBySqlOne(String sql, Object...params) {
+        return super.findBySqlOne(sql, params);
     }
-
     @Override
     public int findBySqlCount(String sql, Object... params) {
         return super.findBySqlCount(sql, params);
@@ -32,4 +32,23 @@ public class UsersDaoImpl extends BaseDaoImpl<User, String> implements UsersDao{
         return super.findAll();
     }
 
+    public List<User> findUserAll(User user){
+        return super.findAll(user);
+    }
+
+    public int deleteByPrimaryKeys(String... primaryKey) {
+        return super.deleteById(primaryKey);
+    }
+
+    public void deleteForSysUser(User user) {
+        super.deleteOfEntity(user);
+    }
+
+    public User updateUser(User user) {
+        return super.updateOfEntity(user);
+    }
+
+    public User save(User user){
+        return super.saveOfEntity(user);
+    }
 }

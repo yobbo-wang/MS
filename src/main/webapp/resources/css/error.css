@@ -1,0 +1,74 @@
+@charset "utf-8";
+/*
+* Title:c错误提醒页面
+* Description:包含404,500,408等等页面
+* Copyright: 军军 (c) 2015
+* Company:poya
+* @author dj 
+* @version 1.0
+* @email:djcbpl@gmail.com and djcbpl@163.com
+* @update user:2015年7月8日16:23:46;
+* @update user:
+*/
+body{
+  font-family: 'Metal Mania', cursive;
+  background:url("../images/main/icon-404.png") #ffffff;
+  margin: 0px;
+  padding: 0px;
+}
+
+.wrap{
+  width:800px;
+  border:none;
+  padding-top: 80px;
+}
+.logo{
+  top:0px;
+  padding-top: 20px;
+  border:none;
+  /*background:url("../images/main/icon-error.png");*/
+  background-repeat: no-repeat;
+  background-position:center 50px;
+  overflow: hidden;
+}
+
+.logo h1{
+  font-size:100px;
+  color:#0099FF;
+  text-align:center;
+  margin-bottom:1px;
+  text-shadow:1px 1px 6px #555;
+} 
+
+.logo p span{
+  color:lightgreen;
+} 
+  
+.sub a{
+  color:#0175BC;
+  text-decoration:none;
+  padding-top:25px;
+  font-size:12px;
+  font-family: arial, serif;
+  font-weight:bold;
+  display:block;
+} 
+.sub a i{
+  padding-right: 10px;
+} 
+.wrap .logo{
+  padding-left: 100px;
+}
+.wrap .logo p{
+  margin:0px;
+  font-family:"微软雅黑";
+  font-size:14px;
+  color: #666666;
+  line-height: 22px;
+  text-align: left;
+}
+.wrap .logo .msg{
+  color:#696969;
+  font-family:"微软雅黑";
+  font-size: 18px;
+}

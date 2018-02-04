@@ -1,0 +1,212 @@
+@charset "utf-8";
+/*
+* Title:首页数据操作区域动态添加的tabs
+* Description:tabs的背景、选项、动画
+* Copyright: 军军 (c) 2015
+* Company:poya
+* @author dj 
+* @version 1.0
+* @email:djcbpl@gmail.com and djcbpl@163.com
+* @update user:2015年6月17日17:16:32;
+* @update user:
+*/
+
+/*tabs部分的导航*/
+#main_layout .layout-panel-center .panel-body-noheader .tabs-header{
+  padding:0px;
+  height: 30px;
+}
+#main_layout .layout-panel-center .panel-body-noheader .tabs-header .tabs-wrap .tabs{
+  height: 30px !important;
+  border-color: #dddddd;
+}
+#main_layout .layout-panel-center .panel-body-noheader{
+  background: #EFF0EE;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#EFF0EE), to(#4A79A7));
+  background-image: -webkit-linear-gradient(top, #EFF0EE, #4A79A7);
+  background-image: -moz-linear-gradient(top, #EFF0EE, #4A79A7);
+  background-image: -ms-linear-gradient(top, #EFF0EE, #4A79A7);
+  background-image: -o-linear-gradient(top, #EFF0EE, #4A79A7);
+  background-image: linear-gradient(top, #EFF0EE, #4A79A7);  
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#EFF0EE,endColorstr=#4A79A7,GradientType=0);
+  border-top-width:0px;
+  border-left: 0px;
+
+  /*overflow:auto;*/
+}
+iframe.main_iframe{
+  margin-left: 6px;
+  margin-top: 1px;
+  border:0px;
+  width:100%;
+  height: 100%;
+  min-height:100%;
+  overflow: auto;
+}
+.layout-split-north{
+	border-bottom:0px !important;
+}
+#layout_center_tabs .tabs-header{
+	background:#E7E5E2 url(../images/main/icon-tabs-nav-bg.png) repeat-x;
+  background-position: 0px 2px;
+}
+
+#layout_center_tabs .tabs-header .tabs-wrap{
+  background:url(../images/main/icon-tabs-nav-bg.png) no-repeat;
+  background-position: 4px -37px;
+}
+#layout_center_tabs .tabs-header .tabs-wrap .tabs{
+  background:url(../images/main/icon-tabs-nav-bg.png) repeat-x;
+  background-position: 37px -69px;
+  margin-left:59px;
+}
+#layout_center_tabs .tabs-header .tabs-wrap .tabs li:first-child{
+  margin-top: 0px;
+}
+#layout_center_tabs .tabs-header .tabs-wrap .tabs li:first-child a.tabs-close{
+  display: none;
+}
+#layout_center_tabs .tabs-header .tabs-wrap .tabs li:first-child a .tabs-closable{
+  padding-right: 0px;
+  padding-top:0px;
+}
+#layout_center_tabs .tabs-header .tabs-wrap .tabs li{
+  padding-top:1px;
+}
+#layout_center_tabs .tabs-header .tabs-wrap .tabs li.tabs-last{
+  margin-right:70px;
+}
+#layout_center_tabs .tabs-header .tabs-wrap .tabs li a span.tabs-title{
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.tabs li a.tabs-close {
+  top: 9px;
+  width: 16px;
+  height:16px;
+  right:2px;
+  opacity: 9.6;
+  filter: alpha(opacity=96);
+}
+.tabs li a.tabs-close {
+  background: url("../images/main/icons.png");
+  background-position:-3px -2156px;
+}
+.tabs li a.tabs-close:hover{
+  background: url("../images/main/icons.png");
+  background-position:-27px -2156px;
+}
+
+.tabs .tabs-first{
+	margin-left:0px;
+}
+.tabs li a.tabs-inner:hover {
+  background: #eaf2ff;
+  color: #000000;
+  filter: none;
+}
+.tabs li.tabs-selected a.tabs-inner {
+  border-color:#CC3300; 
+  background-color:#FF4100;
+  font-family:"微软雅黑";
+  color: #FFF;
+  background: -webkit-linear-gradient(top,#FF4100 0,#E33900 100%);
+  background: -moz-linear-gradient(top,#FF4100 0,#E33900 100%);
+  background: -o-linear-gradient(top,#FF4100 0,#E33900 100%);
+  background: linear-gradient(to bottom,#FF4100 0,#E33900 100%);
+  background-repeat: repeat-x;
+  
+  filter:none;
+  
+}
+.tabs li.tabs-selected a.tabs-inner:hover{
+  font-family:"微软雅黑";
+  border-color:#BD3000; 
+  background-color:#CC3300;
+  color: #FFF;
+  background: -webkit-linear-gradient(top,#CC3300 0,#DD3700 100%);
+  background: -moz-linear-gradient(top,#CC3300 0,#DD3700 100%);
+  background: -o-linear-gradient(top,#CC3300 0,#DD3700 100%);
+  background: linear-gradient(to bottom,#CC3300 0,#DD3700 100%);
+  background-repeat: repeat-x;
+
+  -webkit-box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.5), 0px 1px 2px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.5), 0px 1px 2px rgba(0, 0, 0, 0.15);
+  box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.5), 0px 1px 2px rgba(0, 0, 0, 0.15);
+  /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#CC3300,endColorstr=#DD3700,GradientType=0);*/
+}
+.tabs-header-bottom .tabs li.tabs-selected a.tabs-inner {
+  background: -webkit-linear-gradient(top,#ffffff 0,#EFF5FF 100%);
+  background: -moz-linear-gradient(top,#ffffff 0,#EFF5FF 100%);
+  background: -o-linear-gradient(top,#ffffff 0,#EFF5FF 100%);
+  background: linear-gradient(to bottom,#ffffff 0,#EFF5FF 100%);
+  background-repeat: repeat-x;
+  /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff,endColorstr=#EFF5FF,GradientType=0);*/
+}
+.tabs-header-left .tabs li.tabs-selected a.tabs-inner {
+  background: -webkit-linear-gradient(left,#EFF5FF 0,#ffffff 100%);
+  background: -moz-linear-gradient(left,#EFF5FF 0,#ffffff 100%);
+  background: -o-linear-gradient(left,#EFF5FF 0,#ffffff 100%);
+  background: linear-gradient(to right,#EFF5FF 0,#ffffff 100%);
+  background-repeat: repeat-y;
+  /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#EFF5FF,endColorstr=#ffffff,GradientType=1);*/
+}
+.tabs-header-right .tabs li.tabs-selected a.tabs-inner {
+  background: -webkit-linear-gradient(left,#ffffff 0,#EFF5FF 100%);
+  background: -moz-linear-gradient(left,#ffffff 0,#EFF5FF 100%);
+  background: -o-linear-gradient(left,#ffffff 0,#EFF5FF 100%);
+  background: linear-gradient(to right,#ffffff 0,#EFF5FF 100%);
+  background-repeat: repeat-y;
+  /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff,endColorstr=#EFF5FF,GradientType=1);*/
+}
+.tabs li a.tabs-inner {
+  border-color:#1A6FA4;
+  color: #ffffff;
+  background-color: #00C2FF;
+  overflow:hidden;
+  font-family:"微软雅黑";
+  background: -webkit-linear-gradient(top,#00C2FF 0,#007ECA 100%);
+  background: -moz-linear-gradient(top,#00C2FF 0,#007ECA 100%);
+  background: -o-linear-gradient(top,#00C2FF 0,#007ECA 100%);
+  background: linear-gradient(to bottom,#00C2FF 0,#007ECA 100%);
+  background-repeat: repeat-x;
+  filter:none;
+
+  -webkit-box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.5), 0px 1px 2px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.5), 0px 1px 2px rgba(0, 0, 0, 0.15);
+  box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.5), 0px 1px 2px rgba(0, 0, 0, 0.15);
+  /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00C2FF,endColorstr=#007ECA,GradientType=0);*/
+}
+.tabs li a.tabs-inner:hover{
+  border-color:#009EDB;
+  color: #ffffff;
+  background-color: #009EDB;
+  overflow:hidden;
+  font-family:"微软雅黑";
+  background: -webkit-linear-gradient(top,#009EDB 0,#008DC4 100%);
+  background: -moz-linear-gradient(top,#009EDB 0,#008DC4 100%);
+  background: -o-linear-gradient(top,#009EDB 0,#008DC4 100%);
+  background: linear-gradient(to bottom,#009EDB 0,#008DC4 100%);
+  background-repeat: repeat-x;
+  /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#009EDB,endColorstr=#008DC4,GradientType=0);*/
+}
+
+/*快速关闭tabs选项卡 开始*/
+.shortcutMenuClose{
+  border:1px solid #0099FF;
+  width:150px !important;
+  display:block;
+}
+.shortcutMenuClose li{
+  line-height: 25px;
+  cursor: pointer;
+}
+.shortcutMenuClose li:hover{
+  background:#9CC8F7;
+  color: #000000;
+}
+.shortcutMenuClose li i{
+  margin:0px 5px;
+}
+/*快速关闭tabs选项卡 结束*/

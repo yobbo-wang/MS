@@ -1,0 +1,155 @@
+@charset "utf-8";
+/*
+* Title:消息发送模块
+* Description:
+
+* Copyright: 军军 (c) 2015
+* Company:poya
+* @author dj 
+* @version 1.0
+* @email:djcbpl@gmail.com and djcbpl@163.com
+* @update user:2015年9月1日12:08:52;
+* @update user:
+*/
+.notice{
+
+}
+.dateList{
+	overflow: hidden;
+	height:310px;
+}
+.dateList.noteHeight{
+	overflow: hidden;
+	height:300px;
+}
+.form-pattern{
+	clear: both;
+	overflow: hidden;
+}
+.pattern-bg{
+	background:#fcfcfc !important;
+}
+
+.form-pattern .form-column-1 .form-col-3{
+	width:9.3%;
+}
+.form-pattern .form-column-1 .form-col-9{
+	width:89%;
+}
+.form-pattern2 .form-group .form-col-3{
+	width:20.3%;
+}
+.form-pattern2 .form-group .form-col-9{
+	width:60%;
+}
+.img-photo{
+	margin: 0px;
+	padding: 0px;
+}
+.img-photo li{
+	position: relative;
+	float:left;
+	padding:5px;
+	text-align: center;
+}
+
+
+.img-photo li img{
+	position:absolute;
+	width: 35px;
+	width: 35px;
+	top: 10px;
+	left: 35px;
+	z-index: 2;
+}
+.img-photo li .fa{
+	position:absolute;
+	top: 10px;
+	left: 21px;
+	width: 35px;
+	width: 35px;
+	font-size:1.2rem;
+	float: left;
+	z-index: 2;
+}
+.img-photo li span{
+	position:absolute;
+	left:30px;
+	font-weight: bold;
+	overflow: hidden;
+	display: block;
+	clear: both;
+}
+.notice-tabs{
+
+}
+.notice-tabs .stitle { 
+	width:100%; 
+	clear: right; 
+	height:30px; 
+	border-bottom: 2px solid #0175BC; 
+} 
+.notice-tabs .stitle ul li:hover{
+	background: #FF4100; 
+	color: #FFFFFF; 
+	text-align: center; 
+	float: left; 
+	margin-right: 5px; 
+	padding-top: 4px; 
+}
+.notice-tabs .stitle .close { 
+	width: 80px; 
+	height:28px; 
+	border-top: 1px solid #dedede; 
+	border-left: 1px solid #dedede; 
+	border-right: 1px solid #dedede; 
+	background: #f1f1f1; 
+	color: #000; 
+	text-align: center; 
+	float: left; 
+	margin-right: 5px; 
+	padding-top: 4px; 
+} 
+.notice-tabs .stitle .open { 
+	width: 82px; 
+	min-height: 28px; 
+	color: #fff; 
+	font-size:14px;
+	font-weight: bold;
+	text-align: center; 
+	background:#0175BC; 
+	padding-top:4px; 
+	margin-right: 5px; 
+	float: left; 
+	overflow: hidden; 
+} 
+.notice-tabs ul li { 
+	cursor: pointer; 
+	display: list-item; 
+	list-style:none; 
+} 
+.cntorder{
+	padding-top: 10px;
+}
+
+.form-column-1 .form-col-9 textarea.w-textarea{
+	height:120px;
+	width:84.2% !important;
+}
+
+.cntorder.minHeight{
+	/*position: absolute;*/
+	padding-top: 0px;
+	/*width: 100%;
+	height:80%;
+	min-height:70%;
+	overflow-y:auto;*/
+}
+.overfloeHeight{	
+	position: absolute;
+	padding-top: 0px;
+	width: 100%;
+	height:80%;
+	min-height:70%;
+	overflow-y:auto;
+}

@@ -1,0 +1,343 @@
+.clearMxw{
+	max-width: 100% !important;
+}
+/* general */
+.clear {
+	clear: both;
+}
+
+/* Header */
+.brand{
+	color 				: #E05E00 !important;	
+	font-family 		: georgia;
+	font-style 			: italic;
+}
+
+/* list stuff */
+#org{
+	background-color 	: white;
+	margin 				: 10px;
+	padding 			: 10px;
+}
+
+#show-list{
+	cursor 				: pointer;
+}
+
+/* bootstrap overrides */
+.alert-message{
+	margin: 2px 0;
+}
+
+.topbar{
+	position 			: absolute;
+}
+
+/* Custom chart styling */
+.jOrgChart {
+  margin                : 10px;
+  padding               : 20px;
+  vertical-align: middle; 
+}
+
+/* Custom node styling */
+.jOrgChart .node {
+	font-size 			: 12px;
+	background-color 	: #fcfcfc;
+	border 				: 1px solid #0099FF;
+	color 				: #0099FF;
+	width               : 150px;/*以前默认是180px*/
+    height              : 30px;
+    line-height: 	30px;
+	position: relative;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+ 	-ms-border-radius:5px;
+	border-radius:5px;
+}
+.jOrgChart .node:hover{
+	background-color 	: #FFEEE8;
+	border 				: 1px solid #FF4100;
+}
+.node p{
+	font-family 	: tahoma;
+	font-size 		: 10px;
+	line-height 	: 11px;
+	padding 		: 2px;
+}
+
+div.content_wrap {
+	width: 100%;
+	/*height:450px;*/
+	/*text-align: center;*/
+}
+
+
+
+.groupDiv {
+    border-width: 1px 0px 1px 1px;
+    border-style: solid;
+    border-color: #dddddd;
+    height:300px;
+    overflow-y:auto;
+    overflow-x:hidden;
+    -webkit-border-radius:5px 0px 0px 5px;
+    -moz-border-radius:5px 0px 0px 5px;
+    border-radius:5px 0px 0px 5px;
+}
+.groupDiv li{
+	clear:both;
+	width:195px;
+	position: relative;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+    display: inline-block;
+    padding: 0.5em 1em;
+    border: 1px solid #d4d4d4;
+    margin: 0;
+    text-decoration: none;
+    text-align: center;
+    text-shadow: 1px 1px 0 #fff;
+    font:11px/normal sans-serif;
+    color: #333;
+    white-space: nowrap;
+    cursor: pointer;
+    outline: none;
+    background-color: #ececec;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f4f4f4), to(#ececec));
+    background-image: -moz-linear-gradient(#f4f4f4, #ececec);
+    background-image: -ms-linear-gradient(#f4f4f4, #ececec);
+    background-image: -o-linear-gradient(#f4f4f4, #ececec);
+    background-image: linear-gradient(#f4f4f4, #ececec);
+    -moz-background-clip: padding; /* for Firefox 3.6 */
+    background-clip: padding-box;
+    -webkit-border-radius: 0.3em;
+    -moz-border-radius: 0.3em;
+    -ms-border-radius: 0.3em;
+    border-radius: 0.3em;
+    /* IE hacks */
+    zoom: 1;
+    display: block;
+    *display: inline;
+    margin: 1px 2px;
+}
+/*.groupDiv li:hover{
+    background:#99CCFF; 
+}*/
+.groupDiv li:hover,
+.groupDiv li:active,
+.groupDiv li.active {
+    border-color: #3072b3;
+    border-bottom-color: #2a65a0;
+    text-decoration: none;
+    text-shadow: -1px -1px 0 rgba(0,0,0,0.3);
+    color: #fff;
+    background-color: #3c8dde;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#599bdc), to(#3072b3));
+    background-image: -moz-linear-gradient(#599bdc, #3072b3);
+    background-image: -o-linear-gradient(#599bdc, #3072b3);
+    background-image: linear-gradient(#599bdc, #3072b3);
+}
+.groupItem {
+	cursor:pointer; 
+	display:block;
+}
+.groupItem_Disabled {
+	display:inline-block;
+	cursor:default;
+	padding:2px;
+	margin:2px 10px;
+	border:1px gray solid;
+	background-color:#DFDFDF;
+	color:#999999
+}
+.dom_tmp {
+	position:absolute;
+	font-size:12px;
+}
+.active {
+	background-color:#FCFCFC;
+}
+
+.dom_line {
+	margin:2px;
+	border-bottom:1px gray dotted;
+	height:1px
+}
+/*.domBtnDiv {display:block;padding:2px;border:1px gray dotted;background-color:powderblue}*/
+.categoryDiv {
+    border: 1px #dddddd solid;
+    width:100%; 
+    min-width:300px;
+    height:60px;
+    overflow:auto;
+
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    border-radius:5px;
+}
+.categoryDiv:hover{
+	border-color: #0099FF;
+}
+.categoryDiv li{
+    font-size: 12px;
+    text-align : left;
+    padding:1px 5px;
+    border-width:1px;
+    border-style: solid;
+    border-color:#0099ff;
+    background-color: #fcfcfc;
+    overflow:auto;
+    float: left;
+    margin: 2px;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    -o-border-radius:4px;
+    border-radius:4px;
+}
+.categoryDiv li:hover{
+    background:#3399FF; 
+    /*border-color:#ff4100;*/
+    color:#ffffff;
+}
+.domBtn {
+	cursor:pointer;
+	 display:block;
+	 color:#000000; 
+	 min-height:20px; 
+	 padding:0px 0px 0px 2px;
+}
+.domBtn_Disabled {
+	display:inline-block;
+	cursor:default;
+	padding:2px;
+	margin:2px 10px;
+	border:1px gray solid;
+	background-color:#DFDFDF;
+	color:#999999;
+}
+.dom_tmp {
+	position:absolute;
+	font-size:12px;
+}
+.orgChart{
+	border-color: #dddddd !important;
+	background:none;
+
+	-webkit-border-radius:0px 5px 5px 0px;
+    -moz-border-radius:0px 5px 5px 0px;
+    border-radius:0px 5px 5px 0px;
+}
+fieldset.fieldset-box{
+	border-width: 1px 0px 0px 0px;
+	border-style: solid;
+	border-color:#0099FF;
+	padding-top: 10px;
+	margin: 0px;
+	height:auto;
+}
+fieldset.fieldset-box legend{
+	margin-left: 25px;	
+	border: 1px solid #0099FF;
+	padding:3px 5px;
+	font-size: 14px;
+}
+fieldset.fieldset-box .emergency-team-left-column{
+	width:20%;
+	float: left;
+	padding: 0px;
+	margin:0px;
+}
+fieldset.fieldset-box .emergency-team-right-column{
+	width:80%;
+	float: left;
+	padding: 0px;
+	margin:0px;
+}
+fieldset.fieldset-box .leftDiv{
+	width:30%;
+    float:left;
+}
+fieldset.fieldset-box .rightDiv{
+	width:70%;
+	float:left;
+	padding-left: 20px;
+}
+fieldset.fieldset-box .leftDiv ul.ztree {
+	margin-top:8px;
+	border: 1px solid #dddddd;
+	background: #f0f6e4;
+	height:455px;
+	overflow-x:auto;
+
+	-webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    border-radius:5px;
+}
+fieldset.fieldset-box .leftDiv ul.ztree:hover {
+	border-color: #0099FF;
+}
+fieldset.fieldset-box .rightDiv .rightDivTitle{
+	height: 18px;
+	overflow:hidden;
+	font-weight:bold;
+	font-family:'微软雅黑';
+}
+fieldset.fieldset-box .rightDiv .rightDivTitle #currentSelectedGroup{
+	color: #0099FF;
+}
+fieldset.fieldset-box .rightDiv .group-leader{
+	width:100%;
+	float:left;
+	margin-bottom:20px;
+}
+fieldset.fieldset-box .rightDiv .deputy-head{
+	width:100%;
+	float:left;
+	margin-bottom:20px;
+}
+fieldset.fieldset-box .rightDiv .members{
+	width:100%;
+	clear: both;
+}
+fieldset.fieldset-box .rightDiv .members .categoryDiv{
+	height:320px;
+	margin-bottom:20px;
+}
+
+.node.uso_node_select{/*选中效果*/
+	border-color: #0099C6 !important;
+	background: #00B7EE !important;
+	color: #FFFFFF !important;
+	font-weight: bold !important;
+	display: inline-block;
+	cursor: pointer !important;
+	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1) !important;
+}
+
+
+div.fieldset-box{
+    border-width: 1px 0px 0px 0px;
+    border-style: solid;
+    border-color: #0099FF;
+    padding-top: 10px;
+    margin:0px 0px 10px 0px;
+    height: auto;
+    width:100%;
+}
+div.fieldset-box legend{
+	background:#fff;
+	border: 1px solid #0099FF;
+	padding: 3px 5px;
+	font-size: 14px;
+	margin:-28px 0px 10px 40px;
+	width:5em;
+}
+.chartLeftGroup {
+	float: left;
+	width: 200px;
+	}
+.chartRightGroup{
+	margin-left: 200px;
+}
