@@ -8,9 +8,10 @@ import java.util.Map;
 
 /**
  * restful 入口
+ * version v1.0
  */
 @Controller
-@RequestMapping(value = "/api")
+@RequestMapping(value = "/api/v1.0")
 public class APIController {
 
     @RequestMapping(value = "/result", method = RequestMethod.POST)

@@ -18,9 +18,6 @@
         .layadmin-carousel .layui-carousel, .layadmin-carousel>[carousel-item]>* {background-color: #fff;}
         .layadmin-carousel .layui-col-space10 {margin: 0;}
         .layadmin-backlog-body h3 {padding-bottom: 10px;font-size: 12px;}
-        /*::-webkit-scrollbar {width: 5px;height: 15px;background-color: transparent;}*/
-        /*::-webkit-scrollbar-thumb {background: #424242;border-radius: 5px;}*/
-        /*::-webkit-scrollbar-track {background-color: transparent;}*/
     </style>
 </head>
 <body class="layui-layout-body" style="overflow-y:visible;">
@@ -39,13 +36,21 @@
                                             <li class="layui-col-xs6">
                                                 <a lay-href="" class="layadmin-backlog-body">
                                                     <h3>应用主机</h3>
-                                                    <p><cite>2</cite></p>
+                                                    <p>
+                                                        <cite>220</cite>
+                                                        <span style="float: right;color: red;font-style: normal;font-size: 22px;font-weight: 300;margin-right: 10px;">2</span>
+                                                    </p>
                                                 </a>
                                             </li>
                                             <li class="layui-col-xs6">
                                                 <a lay-href="" class="layadmin-backlog-body">
                                                     <h3>存储主机</h3>
-                                                    <p><cite>9</cite></p>
+                                                    <p>
+                                                        <cite>9</cite>
+                                                        <span style="float: right;width: 80%;">
+                                                            <marquee align="middle" behavior="scroll" color="red">正在执行任务...</marquee>
+                                                        </span>
+                                                    </p>
                                                 </a>
                                             </li>
                                             <li class="layui-col-xs6">
