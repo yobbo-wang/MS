@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @Table(name = "MS_HOSTS")
 public class Hosts extends BaseEntity<String> {
 
-    @Column(name = "IP", length = 18, unique = true)
+    @Column(name = "IP", length = 18, unique = true, nullable = false)
     private String IP;
 
     @Column(name = "UID", length = 30)
@@ -25,8 +25,8 @@ public class Hosts extends BaseEntity<String> {
     @Column(name = "NAME", length = 30)
     private String NAME;
 
-    @Column(name = "DESC", length = 50)
-    private String DESC;
+    @Column(name = "REMARK", length = 50)
+    private String REMARK;
 
     public String getIP() {
         return IP;
@@ -60,12 +60,12 @@ public class Hosts extends BaseEntity<String> {
         this.NAME = NAME;
     }
 
-    public String getDESC() {
-        return DESC;
+    public String getREMARK() {
+        return REMARK;
     }
 
-    public void setDESC(String DESC) {
-        this.DESC = DESC;
+    public void setREMARK(String REMARK) {
+        this.REMARK = REMARK;
     }
 
     public boolean isNew() {
