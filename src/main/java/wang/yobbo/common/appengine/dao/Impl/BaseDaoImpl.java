@@ -146,9 +146,11 @@ public class BaseDaoImpl<E extends AbstractEntity, ID extends Serializable> impl
         Assert.notNull(sql, "sql must not null.");
         sql = "select count(1) as COUNT from ( " + sql + ") a";
         Query query = this.getBaseDaoManager().getEntityManager().createNativeQuery(sql);
-        query.unwrap(org.hibernate.SQLQuery.class).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP); //查询结果返回MAP
+        //查询结果返回MAP
+        // Transformers.TO_LIST
+        query.unwrap(org.hibernate.SQLQuery.class).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
         baseDaoManager.setParameter(query, var0);
-        Map map = (Map)query.getSingleResult();
+        Map<String, Object> map = (Map<String, Object>)query.getSingleResult();
         return map != null ? Integer.valueOf(map.get("COUNT").toString()): 0;
     }
 
@@ -158,7 +160,7 @@ public class BaseDaoImpl<E extends AbstractEntity, ID extends Serializable> impl
      * @param var0 参数数组
      * @return 返回List<Map>结果集
      */
-    public List<Map> fingBySqlList(String sql, Object ...var0){
+    public List fingBySqlList(String sql, Object ...var0){
         Assert.notNull(sql, "sql must not null.");
         Query query = this.getBaseDaoManager().getEntityManager().createNativeQuery(sql);
         query.unwrap(org.hibernate.SQLQuery.class).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP); //查询结果返回MAP
@@ -172,16 +174,16 @@ public class BaseDaoImpl<E extends AbstractEntity, ID extends Serializable> impl
      * @param var0 参数数组
      * @return 返回Map结果集
      */
-    public Map findBySqlOne(String sql, Object... var0) {
+    public Map<String, Object> findBySqlOne(String sql, Object... var0) {
         Assert.notNull(sql, "sql must not null.");
         Query query = this.getBaseDaoManager().getEntityManager().createNativeQuery(sql);
         query.unwrap(org.hibernate.SQLQuery.class).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP); // 查询结果返回MAP
         this.baseDaoManager.setParameter(query, var0);
         try{
             Object row = query.getSingleResult();
-            return (Map)row;
+            return (Map<String, Object>)row;
         }catch (Exception e){
-            return new HashMap();
+            return new HashMap<String, Object>();
         }
     }
 }

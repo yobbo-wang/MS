@@ -6,6 +6,7 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -229,6 +230,7 @@ public final class BaseDaoManager {
         return query.getResultList();
     }
 
+    @NotNull
     private String prepareOrder(Sort sort) {
         if(sort != null && sort.iterator().hasNext()) {
             StringBuilder orderBy = new StringBuilder("");

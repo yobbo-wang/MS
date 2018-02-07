@@ -16,7 +16,7 @@ import java.util.Map;
 @Service
 public class UsersDaoImpl extends BaseDaoImpl<User, String> implements UsersDao{
 
-    public Map findBySqlOne(String sql, Object...params) {
+    public Map<String, Object> findBySqlOne(String sql, Object...params) {
         return super.findBySqlOne(sql, params);
     }
     @Override
