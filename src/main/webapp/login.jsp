@@ -1,134 +1,85 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%
-String path = request.getContextPath();
-%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<% String path = request.getContextPath();%>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /> <!--优先使用最新版IE浏览器-->
-<!-- <title>新疆农村信用社</title> -->
-<title>业务连续性管理软件-登录</title>
-
-<script type="text/javascript" src="<%=path%>/resources/js/jquery/jquery.min.js"></script>
-<script type="text/javascript" src="<%=path%>/resources/js/jqueryeasyui/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="<%=path%>/resources/js/jqueryeasyui/easyui-lang-zh_CN.js"></script>
-<script type="text/javascript"	src="<%=path%>/resources/js/plug/lhgdialog/lhgdialog.min.js"></script>
-<script type="text/javascript"	src="<%=path %>/common/common_tools.js"></script>
-<script type="text/javascript" src="<%=path%>/resources/js/utils/jquery.pulsate.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="<%=path%>/resources/js/utils/md5-min.js"></script>
-<!--  -->
-<script type="text/javascript" src="<%=path%>/resources/js/utils/des.js"></script>
-<script type="text/javascript" src="<%=path%>/resources/js/utils/comp-dropDown.js"></script>
-<script type="text/javascript" src="login.js"></script>
-
-<!--自定义遮罩层样式-->
-<style>
-#loading-mask{
-    position:absolute;
-    left:0;
-    top:0;
-    filter:alpha(opacity=50);opacity:.5;
-    width:100%;
-    height:100%;
-    z-index:4;
-    background-color:#DCE2F1;
-     display:none;
-}
-</style>
-<!-- 修改favicon.ico图标 -->
-<link rel="Bookmark" href="<%=path%>/resources/images/main/bitbug_favicon.ico" />
-<link rel="Shortcut Icon" href="<%=path%>/resources/images/main/bitbug_favicon.ico" />
-
-
-<link rel="stylesheet" type="text/css"	href="<%=path%>/resources/css/easyui/themes/default/easyui.css">
-<!-- 通用样式  用于控制系统的字体 和表单格式的统一 -->
-<link rel="stylesheet" type="text/css" href="<%=path%>/resources/css/layout.css" /> 
-<link rel="stylesheet" type="text/css" href="<%=path%>/resources/css/font/css/font-awesome.css" />
-<link rel="stylesheet" type="text/css" href="<%=path%>/resources/css/common_css.css" />
-<link rel="stylesheet" type="text/css" href="<%=path%>/resources/css/button.css" />
-<link rel="stylesheet" type="text/css" href="<%=path%>/resources/css/popUp.css" />
-<link href="<%=path%>/resources/css/login.css" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>自动化运维系统</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link href="<%= path%>/resources/layui/css/layui.css" rel="stylesheet" />
+    <link id="layuicss-layer" rel="stylesheet" href="<%=path %>/resources/layui/css/modules/layer/layer.css" media="all">
+    <link id="layuicss-layuiAdmin" rel="stylesheet" href="<%=path %>/resources/ms/css/admin-1.css" media="all">
+    <link href="<%=path %>/resources/ms/css/login-1.css" rel="stylesheet" />
+    <link href="<%= path%>/resources/font-awesome/css/font-awesome.css" rel="stylesheet" />
 </head>
-<body>
-<!-- 飘云 -->
-<div id="yun">
-	  <div id="cloud1" class="cloud"></div>
- 	 <div id="cloud2" class="cloud"></div>
-</div>
-
-<!-- 中间 登录窗口 -->
-
-<div class="loginbody">
-    <div class="systemlogo"></div> 
-    <div class="loginbox">
-    	<form id="login_form" name="login_form"  method="post" action="">
-		    <ul>
-				<li>用户名称<input id="loginName" name="loginName" type="text" class="loginuser" value=""    placeholder="请输入用户名称 " /></li>
-				<li>用户密码<input id="password" name="password" type="password" class="loginpassword" value=""   placeholder="请输入用户密码 "/></li>
-				<li class="verification_li ">
-					&nbsp;&nbsp;验证码
-					  	<input type="text" id="verificationcodereg"  class="verificationcod"  name="verificationcodereg"    placeholder="请输入验证码"
-				  	 tabindex="4" maxlength="4"
-				  	  onkeypress ="codeRule()"  
-				  	  style="ime-mode:disabled;"   
-				  	 />  
-				
-				    <img   style="display:inline " id="verificationcodeimg"  onclick="refreshvc();" src="<%=path %>/resources/images/login/loading.gif" />  				    
-				   
-				</li>
-			
-				<li class="login-but">
-					<input id="loginBtn" name="" type="button" class="loginBtn loginbotton" value="登 录"  onclick="login();"  />
-					<input name="" type="reset" class="loginBtn loginBtnReset margin-right" value="重 置"  />
-				</li>
-		    </ul>
-		    
-		    <!-- <a href="javascript:;"    class="sjBrowser">Android下载安装</a>
-		    <a href="javascript:;"  onClick="javascript:window.location.href='<%=path%>/file/downIOS'"   class="sjBrowser">IOS下载安装</a>
-		    -->
-		    <div class="row appDownload">
-					<span class="dropDown dropDown_click"><a href="javascript:;" class="dropDown_A">Android下载安装</a>
-						<span class="dropDown-menu box-shadow">
-							<ol>
-								<li><a href="<%=path%>/model/app/bcm.apk"><img src="<%=path%>/resources/images/login/icon-android.png" alt="Android下载安装二维码"></a></li>
-								<li><a href="javascript:;">手机扫一扫二维码或点击图片下载安装</a></li>
-							</ol>
-						</span>
-					</span>
-					
-					<!-- <span class="dropDown dropDown_click"><a href="javascript:;" class="dropDown_A">IOS下载安装</a>
-						<span class="dropDown-menu box-shadow">
-							<ol>
-								<li><a href="<%=path%>/model/app/bcm.ipa'" ><img src="<%=path%>/resources/images/login/icon-ios.png" alt="IOS下载安装二维码"></a></li>
-								<li><a href="javascript:;">手机扫一扫二维码或点击图片下载安装</a></li>
-							</ol>
-						</span>
-					</span> -->
-		    </div>
-		    
-	    </form>
+<body class="layui-layout-body">
+<div id="LAY_app">
+    <div class="layadmin-user-login" id="LAY-user-login" style="display: none;background: url('<%=path%>/resources/image/background.png') no-repeat center center;
+            background-size: cover;background-repeat: no-repeat;">
+        <div class="layadmin-user-login-main" style="float: right;background-color: #fff;margin-right: 10%;">
+            <div class="layadmin-user-login-box layadmin-user-login-header">
+                <h2>先进自动化运维管理系统</h2>
+                <p>开源自动化运维工具</p>
+            </div>
+            <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
+                <form class="layui-form" id="login">
+                    <div class="layui-form-item">
+                        <label class="layadmin-user-login-icon layui-icon layui-icon-username" for="LAY-user-login-username"><i class="fa fa-user"></i></label>
+                        <input type="text" name="name" lay-verify="required" autocomplete="off" placeholder="用户名:demo" class="layui-input" >
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layadmin-user-login-icon layui-icon layui-icon-password" for="LAY-user-login-password"><i class="fa fa-unlock-alt"></i></label>
+                        <input type="password" name="password" lay-verify="required" autocomplete="off" placeholder="密码:tplay" class="layui-input">
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layadmin-user-login-icon layui-icon layui-icon-password" for="LAY-user-login-password"><i class="fa fa-code"></i></label>
+                        <input type="text" name="captcha" lay-verify="required" autocomplete="off" placeholder="验证码" class="layui-input" style="width:62%;float: left;margin-right:11px;">
+                        <img src="<%= path%>/resources/image/code.png" alt="captcha"  height="36" id="captcha" style="margin-top: 1px" />
+                        <%--<img src="/tplay/public/captcha.shtml" alt="captcha" onclick="this.src='/tplay/public/captcha.shtml?seed='+Math.random()" height="36" id="captcha" style="margin-top: 1px" />--%>
+                    </div>
+                    <div class="layui-form-item">
+                        <input type="checkbox" lay-skin="primary" title="记住账号" name="remember" value="1" ><div class="layui-unselect layui-form-checkbox" lay-skin="primary"><span>记住账号?</span><i class="layui-icon"></i></div>
+                    </div>
+                    <div class="layui-form-item">
+                        <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="login">登 入</button>
+                    </div>
+                    <input type="hidden" name="__token__" value="261bb41130d0791893522d783e9e0522804050f1" />
+                </form>
+            </div>
+        </div>
     </div>
 </div>
-	
-	
-<!-- 尾部版权 -->
-<!-- 
-<div class="loginbm">
-	<p>Copyright © 2015-<script>document.write((new Date()).getFullYear());</script>Xinjiang rural credit cooperatives Co., Ltd. &nbsp;新疆农村信用社 版权所有</p>
-</div>
--->
-<div class="loginbm">
-	<p>Copyright © 2017-<script>document.write((new Date()).getFullYear());</script> &nbsp;深圳壹师城科技有限公司  版权所有</p>
-</div> 
-<!-- lhgdialog 使用自定义遮罩  -->
-<div id="loading-mask"  ></div>
-</body>
-</html>
-<script type="text/javascript">
 
-var path='<%=path%>';
-
+<script src="<%=path %>/resources/layui/layui.js"></script>
+<script>
+    layui.use(['layer', 'form'], function() {
+        var layer = layui.layer,
+            $ = layui.jquery,
+            form = layui.form;
+        $(window).on('load', function() {
+            form.on('submit(login)', function(data) {
+                $.ajax({
+                    url: "<%=path%>/sys/login",
+                    data: $('#login').serialize(),
+                    type: 'post',
+                    async: false,
+                    success: function(res) {
+                        layer.msg(res.data.msg,{offset: '50px',anim: 0.3});
+                        if(res.success) {
+                            setTimeout(function() {
+                                location.href = res.data.url;
+                            }, 1000);
+                        } else {
+                            $('#captcha').click();
+                        }
+                    }
+                })
+                return false;
+            });
+        });
+    });
 </script>
+</body>
 </html>

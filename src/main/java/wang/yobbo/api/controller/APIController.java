@@ -6,6 +6,9 @@ import wang.yobbo.common.appengine.InvokeResult;
 
 import java.util.Map;
 
+/**
+ * restful 入口
+ */
 @Controller
 @RequestMapping(value = "/api")
 public class APIController {

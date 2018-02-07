@@ -24,9 +24,22 @@ public class SysController {
         return invokeResult;
     }
 
+    @RequestMapping(value = "logout", method = RequestMethod.GET)
+    public ModelAndView logout(){
+        //清除cookie，退出到登录页面
+        ModelAndView modelAndView = new ModelAndView("index");
+        return modelAndView;
+    }
+
     @RequestMapping(value = "index", method = RequestMethod.GET)
     public ModelAndView toIndex(){
         ModelAndView modelAndView = new ModelAndView("index");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "setting", method = RequestMethod.GET)
+    public ModelAndView toSetting(){
+        ModelAndView modelAndView = new ModelAndView("setting/index");
         return modelAndView;
     }
 }
