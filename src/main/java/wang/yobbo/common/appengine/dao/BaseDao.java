@@ -60,9 +60,5 @@ public interface BaseDao<E extends AbstractEntity, ID extends Serializable> {
 
     E get(Serializable var0, E var1);
 
-    E toDTO(E var0);
-
-    E toEntity(E var0);
-
     Map findBySqlOne(String sql, Object...var0);
 }

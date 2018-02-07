@@ -5,6 +5,8 @@ import net.sf.ehcache.config.Searchable;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.Nullable;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
@@ -60,12 +62,16 @@ public final class BaseDaoManager {
     public static void setEntityManagerFactory(EntityManagerFactory entityManagerFactory) {
         entityManager = SharedEntityManagerCreator.createSharedEntityManager(entityManagerFactory);
     }
+
+    @org.jetbrains.annotations.Contract(pure = true)
     public EntityManager getEntityManager() {
         Assert.notNull(entityManager, "entityManager must not null, please see " +
                 "[wang.yobbo.common.appengine.BaseDaoManager#setEntityManagerFactory]");
         return entityManager;
     }
 
+    @Nullable
+    @Contract(pure = true)
     public <T>List<T> findAll(T t){
         return null;
     }
@@ -76,6 +82,7 @@ public final class BaseDaoManager {
      * @param <T>
      * @return
      */
+    @Contract("null -> null")
     public <T extends AbstractEntity> T save(T entity) {
         if (entity == null) {
             return null;

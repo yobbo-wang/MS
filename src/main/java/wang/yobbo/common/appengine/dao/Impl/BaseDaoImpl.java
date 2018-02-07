@@ -123,14 +123,6 @@ public class BaseDaoImpl<E extends AbstractEntity, ID extends Serializable> impl
         return null;
     }
 
-    public E toDTO(E var0) {
-        return null;
-    }
-
-    public E toEntity(E var0) {
-        return null;
-    }
-
     /**
      * 根据自定义sql更新
      * @param sql 自定义sql

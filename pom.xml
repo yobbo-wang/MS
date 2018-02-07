@@ -328,6 +328,11 @@
       <artifactId>google-collections</artifactId>
       <version>${google-collections.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.jetbrains</groupId>
+      <artifactId>annotations-java5</artifactId>
+      <version>RELEASE</version>
+    </dependency>
   </dependencies>
   <build>
     <finalName>JPA</finalName>
