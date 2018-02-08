@@ -7,7 +7,10 @@ package wang.yobbo.common.appengine.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;

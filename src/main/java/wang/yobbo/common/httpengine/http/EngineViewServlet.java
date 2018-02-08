@@ -164,7 +164,8 @@ public class EngineViewServlet extends HttpServlet {
             }
             params.put("base_path",base_path);
             params.put("package_name",package_name);
-            Object data = EngineDataService.getInstance().processTemplate(path,params,servletContext);
+            params.put("contextPath", servletContext.getContextPath());
+            Object data = EngineDataService.getInstance().processTemplate(path,params, servletContext);
 
             Template template = configuration.getTemplate(filePath);
             Writer writer = response.getWriter();

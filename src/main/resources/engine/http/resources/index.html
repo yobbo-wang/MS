@@ -7,7 +7,7 @@
 <title>应用引擎</title>
 </head>
 <body class="easyui-layout">   
-    <div data-options="region:'west',title:'数据模型信息',split:true" style="width:210px;border-right: 1px solid #95B8E7;">
+    <div data-options="region:'west',title:'菜单配置',split:true" style="width:600px;border-right: 1px solid #95B8E7;">
     	<div style="background-color: #F4F4F4;border-width: 0 0 1px 0;border-style: solid;border-color: #dddddd;">
 			<a class="easyui-linkbutton" data-options="plain:true" onclick="appEngine.editTables('add')">增加表</a>
 			<span class="datagrid-btn-separator" style="vertical-align: middle; display:inline-block;float:none"></span>
@@ -15,8 +15,18 @@
 			<span class="datagrid-btn-separator" style="vertical-align: middle; display:inline-block;float:none"></span>
 			<a class="easyui-linkbutton" data-options="plain:true" onclick="appEngine.editTables('del')">删除表</a>
 		</div>
-    	<ul class="easyui-tree" id="dataMoudleTree" data-options="url:'<%=path %>/manager/queryMenu',animate:true,onClick:function(node){appEngine.onClickTree(node)},onAfterEdit:function(node){appEngine.onAfterTree(node)}"></ul>
-    </div>   
+		<table class="easyui-treegrid" style="width:100%;height:94%;"
+			   data-options="url:'<#if contextPath ??>${contextPath}</#if>/menu/findByPId',idField:'id',treeField:'name',border:false">
+			<thead>
+				<tr>
+					<th data-options="field:'name',width:180">名称</th>
+					<th data-options="field:'type',width:60,align:'right'">类型</th>
+					<th data-options="field:'createDateStr',width:80">创建时间</th>
+					<th data-options="field:'updateDateStr',width:80">更新时间</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
     <div data-options="region:'center',title:'实体信息'">
     	<form id="entityInfo" style="height:12%">
 			<table>
@@ -56,8 +66,8 @@
 		</form>
 		
 		<div style="height:88%;">
-			<table style="width: 100%;height:100%;" id="datagrid-entity" class="easyui-datagrid" data-options="onLoadSuccess:function(data){appEngine.loadSuccessData(data)},pagination:true,fitColumns:true,
-			fit:true,striped:true,singleSelect:true,toolbar:'#entityTool',onClickCell:appEngine.onClickCell">   
+			<table style="width: 100%;height:100%;border-left: 0;" id="datagrid-entity" class="easyui-datagrid" data-options="onLoadSuccess:function(data){appEngine.loadSuccessData(data)},pagination:true,fitColumns:true,
+			fit:true,striped:true,singleSelect:true,toolbar:'#entityTool',onClickCell:appEngine.onClickCell">
 				<thead>   
 					<tr>   
 						<th data-options="field:'COLUMN_NAME',width:40,align:'center',editor:'text'">属性名称</th>   

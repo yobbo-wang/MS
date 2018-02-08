@@ -1,13 +1,12 @@
 package wang.yobbo.sys.entity;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import wang.yobbo.common.appengine.entity.BaseEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import java.sql.Timestamp;
-import java.util.Date;
 
 /**
  * 实体类可以继承BaseEntity，BaseEntity类已经加了ID、CREATE_DATE、UPDATE_DATE字段，主键生成策略是32位UUID
@@ -15,7 +14,9 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "MS_SYS_USERS")
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class User extends BaseEntity<String>{
+    private static final long serialVersionUID = 1L;
 
     @Column(name = "UID", length = 64, nullable = false, unique = true)
     private String loginName;

@@ -24,7 +24,7 @@ import java.util.Map;
 public class BaseDaoImpl<E extends AbstractEntity, ID extends Serializable> implements BaseDao<E, ID>{
     private BaseDaoManager baseDaoManager;
 
-    private BaseDaoManager getBaseDaoManager(){
+    public BaseDaoManager getBaseDaoManager(){
         if(null == this.baseDaoManager) {
             this.baseDaoManager = new BaseDaoManager(this.getClassForStatic());
         }
@@ -72,7 +72,7 @@ public class BaseDaoImpl<E extends AbstractEntity, ID extends Serializable> impl
     }
 
     public List<E> findAll(E var0) {
-        return null;
+        return this.getBaseDaoManager().findAll(var0);
     }
 
     public E createOfEntity(E entity) {
