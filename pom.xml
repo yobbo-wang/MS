@@ -39,7 +39,7 @@
     <shiro.version>1.3.2</shiro.version>
     <dwr.version>3.0.2-RELEASE</dwr.version>
     <google-collections.version>1.0-rc2</google-collections.version>
-    <oracle.version>12.1.0.1.0</oracle.version>
+    <oracle.version>12.1.0</oracle.version>
     <freemarker.version>2.3.23</freemarker.version>
   </properties>
   <dependencies>
@@ -121,7 +121,7 @@
       <version>${mysql.version}</version>
       <scope>runtime</scope>
     </dependency>
-    <!-- ojdbc lib-->
+    <!-- oJdbc lib-->
     <dependency>
       <groupId>com.oracle</groupId>
       <artifactId>ojdbc7</artifactId>
@@ -430,6 +430,29 @@
         <db.url>jdbc:oracle:thin:@127.0.0.1:1521:XE</db.url>
         <db.username>bcm</db.username>
         <db.password>Bcm123456</db.password>
+        <db.Type>ORACLE</db.Type>
+        <db.validationQuery>select 1 from dual</db.validationQuery>
+        <db.generateDdl>true</db.generateDdl>
+        <db.dialect>org.hibernate.dialect.Oracle10gDialect</db.dialect>
+        <log.moduleName>FrontMusik</log.moduleName>
+        <log.base>FrontMusikLogs</log.base>
+        <log.other.level>DEBUG</log.other.level>
+        <log.root.level>DEBUG</log.root.level>
+        <log.max.size>10kb</log.max.size>
+        <log.stdout.ref><![CDATA[<appender-ref ref="stdout" />]]></log.stdout.ref>
+        <cacheManagerTpye>ehcache</cacheManagerTpye>
+        <base.path>E:\公司项目源码Idea\MS\src\main\java</base.path>
+        <package.name>wang.yobbo</package.name>
+        <appEngine.version>1.0.0</appEngine.version>
+      </properties>
+    </profile>
+    <profile>
+      <id>oracle_home</id>
+      <properties>
+        <db.driverClassName>oracle.jdbc.driver.OracleDriver</db.driverClassName>
+        <db.url>jdbc:oracle:thin:@127.0.0.1:1521:ORACLE</db.url>
+        <db.username>ztpj</db.username>
+        <db.password>ztpj_123</db.password>
         <db.Type>ORACLE</db.Type>
         <db.validationQuery>select 1 from dual</db.validationQuery>
         <db.generateDdl>true</db.generateDdl>
