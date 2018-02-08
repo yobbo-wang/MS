@@ -40,12 +40,19 @@
     <dwr.version>3.0.2-RELEASE</dwr.version>
     <google-collections.version>1.0-rc2</google-collections.version>
     <oracle.version>12.1.0.1.0</oracle.version>
+    <freemarker.version>2.3.23</freemarker.version>
   </properties>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>${junit.version}</version>
+    </dependency>
+    <!-- freemarker libs -->
+    <dependency>
+      <groupId>org.freemarker</groupId>
+      <artifactId>freemarker</artifactId>
+      <version>${freemarker.version}</version>
     </dependency>
     <!-- spring basic libs -->
     <dependency>
@@ -388,6 +395,9 @@
         <log.max.size>10kb</log.max.size>
         <log.stdout.ref><![CDATA[<appender-ref ref="stdout" />]]></log.stdout.ref>
         <cacheManagerTpye>ehcache</cacheManagerTpye>
+        <base.path>E:\公司项目源码Idea\MS\src\main\java</base.path>
+        <package.name>wang.yobbo</package.name>
+        <appEngine.version>1.0.0</appEngine.version>
       </properties>
     </profile>
     <profile>
@@ -408,6 +418,9 @@
         <log.max.size>10kb</log.max.size>
         <log.stdout.ref><![CDATA[<appender-ref ref="stdout" />]]></log.stdout.ref>
         <cacheManagerTpye>ehcache</cacheManagerTpye>
+        <base.path>E:\公司项目源码Idea\MS\src\main\java</base.path>
+        <package.name>wang.yobbo</package.name>
+        <appEngine.version>1.0.0</appEngine.version>
       </properties>
     </profile>
     <profile>
@@ -428,6 +441,9 @@
         <log.max.size>10kb</log.max.size>
         <log.stdout.ref><![CDATA[<appender-ref ref="stdout" />]]></log.stdout.ref>
         <cacheManagerTpye>ehcache</cacheManagerTpye>
+        <base.path>E:\公司项目源码Idea\MS\src\main\java</base.path>
+        <package.name>wang.yobbo</package.name>
+        <appEngine.version>1.0.0</appEngine.version>
       </properties>
     </profile>
   </profiles>
