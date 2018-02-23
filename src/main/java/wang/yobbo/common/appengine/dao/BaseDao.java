@@ -41,24 +41,20 @@ public interface BaseDao<E extends AbstractEntity, ID extends Serializable> {
 
     /**
      * 查询所有
-     * @param var0
+     * @param entity
      * @return
      */
-    List<E> findAll(E var0);
+    List<E> findAll(E entity);
 
-    E createOfEntity(E var0);
+    E createOfEntity(E entity);
 
-    E saveOfEntity(E var0);
+    E saveOfEntity(E entity);
 
-    E updateOfEntity(E var0);
-
-    int deleteById(ID... var0);
+    int deleteById(ID... ids);
 
     void deleteOfEntity(E entity);
 
-    E get(Serializable var0);
+    E get(Serializable id);
 
-    E get(Serializable var0, E var1);
-
-    Map findBySqlOne(String sql, Object...var0);
+    Map findBySqlOne(String sql, Object...params);
 }

@@ -1,12 +1,12 @@
 package wang.yobbo.sys.dao;
 
 import net.sf.ehcache.config.Searchable;
-import wang.yobbo.sys.entity.User;
+import wang.yobbo.sys.entity.SysUser;
 
 import java.util.List;
 import java.util.Map;
 
-public interface UsersDao{
+public interface SysUsersDao {
     /**
      * 根据自定义sql查询数据结果集
      * @param sql 自定sql
@@ -32,14 +32,14 @@ public interface UsersDao{
      * 获取所有实体所有结果集
      * @return
      */
-    List<User> findUserAll();
+    List<SysUser> findUserAll();
 
     /**
      * 根据实体值，获取所有结果集
      * @param user
      * @return
      */
-    List<User> findUserAll(User user);
+    List<SysUser> findUserAll(SysUser user);
 
     /**
      * 根据主键ID批量删除
@@ -48,9 +48,9 @@ public interface UsersDao{
      */
     int deleteByPrimaryKeys(String ... primaryKey);
 
-    void deleteForSysUser(User user);
+    void deleteForSysUser(SysUser user);
 
-    User updateUser(User user);
+    SysUser updateUser(SysUser user);
 
-    User save(User user);
+    SysUser save(SysUser user);
 }

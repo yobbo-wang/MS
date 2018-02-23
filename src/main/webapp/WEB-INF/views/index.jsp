@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="<%= path%>/resources/layui/css/layui.css" type="text/css">
     <link rel="stylesheet" href="<%= path%>/resources/font-awesome/css/font-awesome.css" type="text/css">
     <link rel="stylesheet" href="<%= path%>/resources/ms/css/engine.css" type="text/css">
+    <script type="application/javascript">var path = '<%= path%>'</script>
 </head>
 <body class="kit-theme">
 <div class="layui-layout layui-layout-admin">

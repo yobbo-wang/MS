@@ -12,60 +12,60 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "MS_HOSTS")
 public class Hosts extends BaseEntity<String> {
-
+    private static final long serialVersionUID = 1L;
     @Column(name = "IP", length = 18, unique = true, nullable = false)
-    private String IP;
+    private String ip;
 
-    @Column(name = "UID", length = 30)
-    private String UID;
+    @Column(name = "USER_NAME", length = 30, nullable = false)
+    private String user_name;
 
     @Column(name = "PWD", length = 50)
-    private String PWD;
+    private String pwd;
 
     @Column(name = "NAME", length = 30)
-    private String NAME;
+    private String name;
 
     @Column(name = "REMARK", length = 50)
-    private String REMARK;
+    private String remark;
 
-    public String getIP() {
-        return IP;
+    public String getIp() {
+        return ip;
     }
 
-    public void setIP(String IP) {
-        this.IP = IP;
+    public void setIp(String ip) {
+        this.ip = ip;
     }
 
-    public String getUID() {
-        return UID;
+    public String getUser_name() {
+        return user_name;
     }
 
-    public void setUID(String UID) {
-        this.UID = UID;
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
     }
 
-    public String getPWD() {
-        return PWD;
+    public String getPwd() {
+        return pwd;
     }
 
-    public void setPWD(String PWD) {
-        this.PWD = PWD;
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
     }
 
-    public String getNAME() {
-        return NAME;
+    public String getName() {
+        return name;
     }
 
-    public void setNAME(String NAME) {
-        this.NAME = NAME;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getREMARK() {
-        return REMARK;
+    public String getRemark() {
+        return remark;
     }
 
-    public void setREMARK(String REMARK) {
-        this.REMARK = REMARK;
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
     public boolean isNew() {

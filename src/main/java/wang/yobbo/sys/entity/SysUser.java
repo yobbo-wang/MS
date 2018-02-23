@@ -15,25 +15,17 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "MS_SYS_USERS")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class User extends BaseEntity<String>{
+public class SysUser extends BaseEntity<String>{
     private static final long serialVersionUID = 1L;
 
-    @Column(name = "UID", length = 64, nullable = false, unique = true)
-    private String loginName;
+    @Column(name = "USER_NAME", length = 64, nullable = false, unique = true)
+    private String user_name;
 
     @Column(name = "NAME", length = 50, nullable = false)
     private String name;
 
     @Column(name = "PWD", length = 64, nullable = false)
-    private String password;
-
-    public String getLoginName() {
-        return loginName;
-    }
-
-    public void setLoginName(String loginName) {
-        this.loginName = loginName;
-    }
+    private String pwd;
 
     public String getName() {
         return name;
@@ -43,15 +35,23 @@ public class User extends BaseEntity<String>{
         this.name = name;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public boolean isNew() {
         return false;
+    }
+
+    public String getPwd() {
+        return pwd;
+    }
+
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
+    }
+
+    public String getUser_name() {
+        return user_name;
+    }
+
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
     }
 }

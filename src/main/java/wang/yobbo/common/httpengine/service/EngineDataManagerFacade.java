@@ -1,23 +1,21 @@
 package wang.yobbo.common.httpengine.service;
 
-import com.alibaba.druid.VERSION;
-import com.alibaba.druid.util.Utils;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.Contract;
-import wang.yobbo.common.httpengine.http.EngineViewServlet;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import wang.yobbo.common.spring.SpringContextUtil;
+import wang.yobbo.sys.entity.SysMenu;
+import wang.yobbo.sys.entity.SysMenuTable;
+import wang.yobbo.sys.service.SysMenuService;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URLDecoder;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.jar.JarFile;
-import java.util.zip.ZipEntry;
 
 public class EngineDataManagerFacade {
     private EngineDataManagerFacade(){}
+    private static final Logger LOG     = LoggerFactory.getLogger(EngineDataManagerFacade.class);
     private final static EngineDataManagerFacade instance       = new EngineDataManagerFacade();
     @Contract(pure = true)
     public static EngineDataManagerFacade getInstance(){
@@ -25,57 +23,63 @@ public class EngineDataManagerFacade {
     }
 
     /**
-     * 获取code中的数据
-     * 需要参数:
-     * 		1) templatePath >> 比如 ：templatePath=/oracle/hibernate/entity.ftl，对应ftl在模板中的位置
-     * 		2) prefix >> 比如：prefix=engine/http/resources/template，模板在 jar包中的位置
-     * 	    3) 不是模板情况 java_base_path >> 比如：E:/电影网站模板/FrontMusik/FrontMusikEngine/src/main/java/tech/yobbo/index/service/IndexService.java
-     * * @param parameters
+     * 处理首页信息
+     * @param basicInfo
      * @return
      */
-    public Map getCodeInfo(Map<String, String> parameters) {
-        Map<String,Object> data = new HashMap<String, Object>();
-        if(parameters.containsKey("prefix") && parameters.containsKey("templatePath")){
-            String prefix = parameters.get("prefix") != null ? parameters.get("prefix") : "";
-            if(!"".equals(EngineViewServlet.getJar_path()) && !"".equals(prefix)){
-                try {
-                    String templatePath = parameters.get("templatePath") != null ? parameters.get("templatePath") : "";
-                    JarFile jar = new JarFile(EngineViewServlet.getJar_path());
-                    ZipEntry entry =  jar.getEntry(prefix+templatePath);
-                    InputStream in = jar.getInputStream(entry);
-                    String text = Utils.read(in);
-                    data.put("code",text);
-                    data.put("readOnly",parameters.get("readOnly"));
-                    in.close();
-                    jar.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }else if(parameters.containsKey("java_base_path")){
-            String filepath = parameters.get("java_base_path");
-            try {
-                filepath = URLDecoder.decode(filepath,"utf-8");
-                File file = new File(filepath);
-                InputStream in = new FileInputStream(file);
-                String text = Utils.read(in);
-                data.put("code",text);
-                data.put("readOnly",parameters.get("readOnly"));
-                in.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return data;
+    public Object getIndexInfo(Map<String,Object> basicInfo) {
+        return basicInfo;
     }
 
     /**
-     * 获取首页基础数据
+     * 处理菜单信息
+     * @param basicInfo
+     * @return
      */
-    public Map getBasicInfo(Map<String,String> params){
-        Map<String,Object> dataMap = new LinkedHashMap<String,Object>();
-        dataMap.put("Version", VERSION.getVersionNumber());
-        return dataMap;
+    public Object getMenuInfo(Map<String,Object> basicInfo) {
+        try{
+            String id = basicInfo.get("id") != null ? basicInfo.get("id").toString() : null;
+            if(StringUtils.isNotEmpty(id)){
+                SysMenuService sysMenuService = SpringContextUtil.getBean(SysMenuService.class); //获取SysMenuService bean
+                SysMenu sysMenu = sysMenuService.findById(id);
+                ObjectMapper mapper = new ObjectMapper();
+                try {
+                    String json = mapper.writeValueAsString(sysMenu);
+                    basicInfo.put("sysMenu", json);
+                } catch (JsonProcessingException e) {
+                    e.printStackTrace();
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            LOG.error("应用引擎查询菜单信息错误: {}", e.getMessage());
+        }
+        return basicInfo;
     }
 
+    /**
+     * 获取实体信息
+     * @param basicInfo
+     * @return
+     */
+    public Object getMenuTableInfo(Map<String,Object> basicInfo) {
+        try{
+            String id = basicInfo.get("id") != null ? basicInfo.get("id").toString() : null;
+            if(StringUtils.isNotEmpty(id)){
+                SysMenuService sysMenuService = SpringContextUtil.getBean(SysMenuService.class); //获取SysMenuService bean
+                SysMenuTable sysMenuTable = sysMenuService.findSysMenuTableById(id);
+                ObjectMapper mapper = new ObjectMapper();
+                try {
+                    String json = mapper.writeValueAsString(sysMenuTable);
+                    basicInfo.put("sysMenuTable", json);
+                } catch (JsonProcessingException e) {
+                    e.printStackTrace();
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            LOG.error("应用引擎查询实体信息错误: {}", e.getMessage());
+        }
+        return basicInfo;
+    }
 }

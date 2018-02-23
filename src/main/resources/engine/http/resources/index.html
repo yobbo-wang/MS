@@ -4,74 +4,68 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="./easyui/css/default/easyui.css" rel="stylesheet" type="text/css">
 <link href="./easyui/css/icon.css" rel="stylesheet" type="text/css"/>
+<script type="application/javascript">var path = '<#if contextPath ??>${contextPath}</#if>'</script>
 <title>应用引擎</title>
 </head>
 <body class="easyui-layout">   
     <div data-options="region:'west',title:'菜单配置',split:true" style="width:600px;border-right: 1px solid #95B8E7;">
     	<div style="background-color: #F4F4F4;border-width: 0 0 1px 0;border-style: solid;border-color: #dddddd;">
-			<a class="easyui-linkbutton" data-options="plain:true" onclick="appEngine.editTables('add')">增加表</a>
 			<span class="datagrid-btn-separator" style="vertical-align: middle; display:inline-block;float:none"></span>
-			<a class="easyui-linkbutton" data-options="plain:true" onclick="appEngine.editTables('modify')">修改表</a>
+			<a class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'" onclick="appEngine.editMenu('add')">新增菜单</a>
 			<span class="datagrid-btn-separator" style="vertical-align: middle; display:inline-block;float:none"></span>
-			<a class="easyui-linkbutton" data-options="plain:true" onclick="appEngine.editTables('del')">删除表</a>
+			<a class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-edit'" onclick="appEngine.editMenu('mod')">修改菜单</a>
+			<span class="datagrid-btn-separator" style="vertical-align: middle; display:inline-block;float:none"></span>
+			<a class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-del'" onclick="appEngine.editMenu('del')">删除菜单</a>
+			<span class="datagrid-btn-separator" style="vertical-align: middle; display:inline-block;float:none"></span>
+			<a class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-large-clipart'" onclick="appEngine.editTables('access-conf')">权限配置</a>
+			<span class="datagrid-btn-separator" style="vertical-align: middle; display:inline-block;float:none"></span>
+			<a class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'" onclick="appEngine.addEntity()">新增实体</a>
 		</div>
-		<table class="easyui-treegrid" style="width:100%;height:94%;"
-			   data-options="url:'<#if contextPath ??>${contextPath}</#if>/menu/findByPId',idField:'id',treeField:'name',border:false">
+		<table id="menu-list" class="easyui-treegrid" style="width:100%;height:94%;"
+			   data-options="url:'<#if contextPath ??>${contextPath}</#if>/menu/findByPId',
+			   idField:'id',treeField:'text',border:false,rownumbers:true,
+			   animate:true,fit:true">
 			<thead>
 				<tr>
-					<th data-options="field:'name',width:180">名称</th>
-					<th data-options="field:'type',width:60,align:'right'">类型</th>
-					<th data-options="field:'createDateStr',width:80">创建时间</th>
-					<th data-options="field:'updateDateStr',width:80">更新时间</th>
+					<th data-options="field:'id',checkbox:true"></th>
+					<th data-options="field:'text',width:'27%'">名称</th>
+					<th data-options="field:'type',width:'10%',formatter:typeFormatter">链接方式</th>
+					<th data-options="field:'url',width:'26%'">路径</th>
+					<th data-options="field:'remark',width:'25%'">备注</th>
+					<th data-options="field:'table',width:'10%',align:'center',formatter:tableFormatter">实体信息</th>
 				</tr>
 			</thead>
 		</table>
 	</div>
     <div data-options="region:'center',title:'实体信息'">
-    	<form id="entityInfo" style="height:12%">
+    	<form id="entityInfo" style="height:6%">
 			<table>
 				<tbody>
 					<tr style="color:#444;">
-						<td>&nbsp;业务分类</td>
+						<td>&nbsp;实体名</td>
 						<td>
-							<!-- <select class="easyui-combotree" id="subclass" style="width:180px;" data-options="readonly:true,onShowPanel:function(){appEngine.loadBusClass(this)},onSelect:function(node){appEngine.selectData(node,'#subclass')}"></select>   -->
-							<input class="easyui-textbox" id="subclass" data-options="readonly:true"/>
+							<input class="easyui-textbox" name="table_name" data-options="readonly:true"/>
 							<input type="hidden" id="aem_entityId"/> 
 							<input type="hidden" id="package_id"/> 
 							<input type="hidden" id="package_name"/>
 						</td>
-						<td>&nbsp;实体名</td>
-						<td><input class="easyui-textbox" id="entityName"/> </td>
-						<td>&nbsp;备注</td>
-						<td><input class="easyui-textbox" id="remark"/></td>
-					</tr>
-					<tr>	
-						<td>&nbsp;已生成</td>
-						<td><select class="easyui-combobox" id="create" data-options="editable:false,panelHeight:100" style="width:180px;">   
-						    <option value="0">否</option> 
-						    <option value="1">是</option>   
-						    <option value="2">导入</option>
-						</select>  </td>
-						<td>&nbsp;生成时间</td>
-						<td><input class="easyui-textbox" id="createtime" data-options="readonly:true,disabled:true" /> </td>
-						<td colspan="2" align="right">
-							<a class="easyui-linkbutton" onclick="appEngine.runEntityResult('save')">保存</a>
-							<a class="easyui-linkbutton" onclick="appEngine.runEntityResult('reset')">重置</a>
-							<a class="easyui-linkbutton" onclick="appEngine.runEntityResult('createEntity')">生成实体代码</a>
-							<a class="easyui-linkbutton" onclick="appEngine.runEntityResult('fromDataSchema')">从数据表导入</a>
+						<td>&nbsp;注释</td>
+						<td><input class="easyui-textbox" name="remark"/></td>
+						<td>
+							<a class="easyui-linkbutton" data-options="iconCls:'icon-save'" onclick="appEngine.createEntityCode()">生成代码</a>
 						</td>
 					</tr>
 				</tbody>
 			</table>
 		</form>
 		
-		<div style="height:88%;">
+		<div style="height:94%;">
 			<table style="width: 100%;height:100%;border-left: 0;" id="datagrid-entity" class="easyui-datagrid" data-options="onLoadSuccess:function(data){appEngine.loadSuccessData(data)},pagination:true,fitColumns:true,
 			fit:true,striped:true,singleSelect:true,toolbar:'#entityTool',onClickCell:appEngine.onClickCell">
 				<thead>   
-					<tr>   
+					<tr>
 						<th data-options="field:'COLUMN_NAME',width:40,align:'center',editor:'text'">属性名称</th>   
-						<th data-options="field:'TYPE_NAME',width:65,align:'center',editor:{type:'combobox',options:{data:appEngine.data_type,panelHeight:160}}">数据类型</th>   
+						<th data-options="field:'TYPE_NAME',width:65,align:'center',editor:{type:'combobox',options:{data:appEngine.data_type,panelHeight:160}}">属性类型</th>
 						<th data-options="field:'PRIMARYKEYS',width:50,align:'center',editor:{type:'combobox',options:{data:[{'value':'YES','text':'YES'},{'value':'NO','text':'NO'}],panelHeight:80}}">主键标记</th>   
 						<th data-options="field:'IS_NULLABLE',width:50,align:'center',editor:{type:'combobox',options:{data:[{'value':'YES','text':'YES'},{'value':'NO','text':'NO'}],panelHeight:80}}">允许为空</th>   
 						<th data-options="field:'IS_AUTOINCREMENT',width:50,align:'center',editor:{type:'combobox',options:{data:[{'value':'YES','text':'YES'},{'value':'NO','text':'NO'}],panelHeight:80}}">自动递增</th>   
@@ -123,17 +117,22 @@ $.extend($.fn.datagrid.methods, {
 		});
 	}
 });
+function typeFormatter(value){
+    var type = "";
+	switch (value){
+		case 'tab': type = '选项卡'; break;
+        case '_blank': type = '新标签'; break;
+		default:  type = ''; break;
+	}
+	return type;
+}
 appEngine.endIndex = undefined;
-appEngine.data_type = [{"value":"TINYINT","text":"TINYINT","type":"java.lang.Integer"},{"value":"SMALLINT","text":"SMALLINT","type":"java.lang.Integer"},{"value":"MEDIUMINT","text":"MEDIUMINT","type":"java.lang.Integer"},{"value":"INT","text":"INT","type":"java.lang.Integer"},
-	             {"value":"INTEGER","text":"INTEGER","type":"java.lang.Integer"},{"value":"BIGINT","text":"BIGINT","type":"BigInteger"},{"value":"BIT","text":"BIT","type":"java.lang.Boolean"},{"value":"REAL","text":"REAL","type":"java.lang.String"},
-	             {"value":"DOUBLE","text":"DOUBLE","type":"java.lang.Double"},{"value":"FLOAT","text":"FLOAT","type":"java.lang.Float"},{"value":"DECIMAL","text":"DECIMAL","type":"BigDecimal"},{"value":"NUMERIC","text":"NUMERIC","type":"java.math.BigDecimal"},
-	             {"value":"CHAR","text":"CHAR","type":"java.lang.String"},{"value":"VARCHAR","text":"VARCHAR","type":"java.lang.String"},{"value":"DATE","text":"DATE","type":"java.sql.Date"},{"value":"TIME","text":"TIME","type":"java.sql.Time"},
-	             {"value":"YEAR","text":"YEAR","type":"java.sql.Date"},{"value":"TIMESTAMP","text":"TIMESTAMP","type":"java.sql.Timestamp"},{"value":"DATETIME","text":"DATETIME","type":"java.sql.Timestamp"},{"value":"TINYBLOB","text":"TINYBLOB","type":"java.lang.byte[]"},
-	             {"value":"BLOB","text":"BLOB","type":"byte[]"},{"value":"MEDIUMBLOB","text":"MEDIUMBLOB","type":"java.sql.Timestamp"},{"value":"LONGBLOB","text":"LONGBLOB","type":"java.sql.Timestamp"},{"value":"TINYTEXT","text":"TINYTEXT","type":"java.lang.byte[]"},
-	             {"value":"TEXT","text":"TEXT","type":"java.lang.byte[]"},{"value":"MEDIUMTEXT","text":"MEDIUMTEXT","type":"java.sql.Timestamp"},{"value":"LONGTEXT","text":"LONGTEXT","type":"java.sql.Timestamp"},{"value":"ENUM","text":"ENUM","type":"java.lang.byte[]"},
-	             {"value":"SET","text":"SET","type":"java.lang.byte[]"},{"value":"BINARY","text":"BINARY","type":"java.sql.Timestamp"},{"value":"varbinary","text":"VARBINARY","type":"java.sql.Timestamp"},{"value":"VARBINARY","text":"VARBINARY","type":"java.lang.byte[]"},
-	             {"value":"VARBINARY","text":"VARBINARY","type":"java.lang.byte[]"},{"value":"VARBINARY","text":"VARBINARY","type":"java.sql.Timestamp"},{"value":"POINT","text":"POINT","type":"java.sql.Timestamp"},{"value":"LINESTRING","text":"LINESTRING","type":"java.lang.byte[]"},
-	             {"value":"POLYGON","text":"POLYGON","type":"java.lang.byte[]"},{"value":"GEOMETRY","text":"GEOMETRY","type":"java.sql.Timestamp"},{"value":"MULTIPOINT","text":"MULTIPOINT","type":"java.sql.Timestamp"},{"value":"MULTILINESTRING","text":"MULTILINESTRING","type":"java.lang.byte[]"},
-	             {"value":"MULTIPOLYGON","text":"MULTIPOLYGON","type":"java.lang.byte[]"},{"value":"GEOMETRYCOLLECTION","text":"GEOMETRYCOLLECTION","type":"java.sql.Timestamp"},{"value":"MULTIPOINT","text":"MULTIPOINT","type":"java.sql.Timestamp"},{"value":"MULTILINESTRING","text":"MULTILINESTRING","type":"java.lang.byte[]"}];
+
+function tableFormatter(rowIndex, rowData) {
+    var data = {index: rowIndex, row: rowData};
+    data = JSON.stringify(data);
+    data = data.replace(new RegExp('"',"gm"),"'");
+    return '<a href="javascript:;" style="text-decoration: none;" onclick="appEngine.displayTable(this)", data-detail="'+ data +'">查看</a>';
+}
 </script>
 </html>

@@ -1,12 +1,12 @@
 package wang.yobbo.sys.service;
 
 import net.sf.ehcache.config.Searchable;
-import wang.yobbo.sys.entity.User;
+import wang.yobbo.sys.entity.SysUser;
 
 import java.util.List;
 import java.util.Map;
 
-public interface SysService{
+public interface SysUserService{
     /**
      * 根据自定义sql查询数据结果集
      * @param sql 自定sql
@@ -32,14 +32,14 @@ public interface SysService{
      * 获取所有实体所有结果集
      * @return
      */
-    List<User> findUserAll();
+    List<SysUser> findUserAll();
 
     /**
      * 根据实体值，获取所有结果集
-     * @param user
+     * @param SysUser
      * @return
      */
-    List<User> findUserAll(User user);
+    List<SysUser> findUserAll(SysUser SysUser);
 
     /**
      * 根据主键ID批量删除
@@ -48,9 +48,9 @@ public interface SysService{
      */
     int deleteByPrimaryKeys(String ... primaryKey);
 
-    void deleteForSysUser(User user);
+    void deleteForUser(SysUser SysUser);
 
-    User update(User user);
+    SysUser update(SysUser SysUser);
 
-    User save(User user);
+    SysUser save(SysUser SysUser);
 }

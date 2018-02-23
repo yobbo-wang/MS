@@ -1,6 +1,5 @@
 package wang.yobbo.sys.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import wang.yobbo.common.appengine.entity.BaseEntity;
 
@@ -21,68 +20,61 @@ public class SysMenu extends BaseEntity<String> {
      * 菜单名称
      */
     @Column(name = "NAME", length = 30)
-    private String NAME;
+    private String text;
 
     @Column(name = "URL", length = 32)
-    private String URL;
+    private String url;
 
     @Column(name = "TYPE", length = 32)
-    private String TYPE;
+    private String type;
 
-    /**
-     * 上级菜单ID，用于映射解析
-     */
-    @Column(insertable = false, updatable = false)
-    private String PID;
+    @Column(name = "REMARK", length = 50)
+    private String remark;
 
-    /**
-     * 上级菜单ID
-     */
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "PID")
-    @JsonIgnore //忽略该字段，不让JSON序列化
-    private SysMenu parent;
+    @Column(name = "ORDER_NUMBER", length = 10)
+    private Integer order_number;
 
-    /**
-     * 下级菜单
-     */
-    @OneToMany(mappedBy = "parent", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    private String parent_id;
+
+    //下级菜单
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "PARENT_ID", insertable = false, updatable = false)
     private List<SysMenu> children = new ArrayList<SysMenu>();
 
-    public String getNAME() {
-        return NAME;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "MENU_ID")
+    private List<SysMenuTable> tables = new ArrayList<SysMenuTable>();
+
+    public String getText() {
+        return text;
     }
 
-    public void setNAME(String NAME) {
-        this.NAME = NAME;
+    public void setText(String text) {
+        this.text = text;
     }
 
-    public SysMenu getParent() {
-        return parent;
+    public String getUrl() {
+        return url;
     }
 
-    public void setParent(SysMenu parent) {
-        this.parent = parent;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
-    public String getURL() {
-        return URL;
+    public String getType() {
+        return type;
     }
 
-    public void setURL(String URL) {
-        this.URL = URL;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public String getTYPE() {
-        return TYPE;
+    public String getParent_id() {
+        return parent_id;
     }
 
-    public void setTYPE(String TYPE) {
-        this.TYPE = TYPE;
-    }
-
-    public boolean isNew() {
-        return false;
+    public void setParent_id(String parent_id) {
+        this.parent_id = parent_id;
     }
 
     public List<SysMenu> getChildren() {
@@ -93,11 +85,32 @@ public class SysMenu extends BaseEntity<String> {
         this.children = children;
     }
 
-    public String getPID() {
-        return PID;
+    public String getRemark() {
+        return remark;
     }
 
-    public void setPID(String PID) {
-        this.PID = PID;
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public Integer getOrder_number() {
+        return order_number;
+    }
+
+    public void setOrder_number(Integer order_number) {
+        this.order_number = order_number;
+    }
+
+    public List<SysMenuTable> getTables() {
+        return tables;
+    }
+
+    public void setTables(List<SysMenuTable> tables) {
+        this.tables = tables;
+    }
+
+    public boolean isNew() {
+        //TODO 待实现
+        return false;
     }
 }

@@ -15,7 +15,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import wang.yobbo.sys.dao.UsersDao;
+import wang.yobbo.sys.dao.SysUsersDao;
 import wang.yobbo.sys.exception.ProcessInstancesIsNotInactiveException;
 import wang.yobbo.sys.util.IOUtils;
 
@@ -41,7 +41,7 @@ public class WorkflowService {
     @Autowired private HistoryService historyService;
     @Autowired private ManagementService managementService;
     @Autowired private IdentityService identityService;
-    @Autowired private UsersDao usersDao;
+    @Autowired private SysUsersDao usersDao;
 
     /**
      * 从数据库中获取流，并部署流程

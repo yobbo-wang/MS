@@ -3,8 +3,8 @@ package wang.yobbo.sys.dao.Impl;
 import net.sf.ehcache.config.Searchable;
 import org.springframework.stereotype.Service;
 import wang.yobbo.common.appengine.dao.Impl.BaseDaoImpl;
-import wang.yobbo.sys.dao.UsersDao;
-import wang.yobbo.sys.entity.User;
+import wang.yobbo.sys.dao.SysUsersDao;
+import wang.yobbo.sys.entity.SysUser;
 
 import java.util.List;
 import java.util.Map;
@@ -14,7 +14,7 @@ import java.util.Map;
  *
  */
 @Service
-public class UsersDaoImpl extends BaseDaoImpl<User, String> implements UsersDao{
+public class UsersDaoImpl extends BaseDaoImpl<SysUser, String> implements SysUsersDao {
 
     public Map<String, Object> findBySqlOne(String sql, Object...params) {
         return super.findBySqlOne(sql, params);
@@ -28,11 +28,11 @@ public class UsersDaoImpl extends BaseDaoImpl<User, String> implements UsersDao{
         return 0;
     }
 
-    public List<User> findUserAll() {
+    public List<SysUser> findUserAll() {
         return super.findAll();
     }
 
-    public List<User> findUserAll(User user){
+    public List<SysUser> findUserAll(SysUser user){
         return super.findAll(user);
     }
 
@@ -40,15 +40,15 @@ public class UsersDaoImpl extends BaseDaoImpl<User, String> implements UsersDao{
         return super.deleteById(primaryKey);
     }
 
-    public void deleteForSysUser(User user) {
+    public void deleteForSysUser(SysUser user) {
         super.deleteOfEntity(user);
     }
 
-    public User updateUser(User user) {
-        return super.updateOfEntity(user);
+    public SysUser updateUser(SysUser user) {
+        return super.saveOfEntity(user);
     }
 
-    public User save(User user){
+    public SysUser save(SysUser user){
         return super.saveOfEntity(user);
     }
 }

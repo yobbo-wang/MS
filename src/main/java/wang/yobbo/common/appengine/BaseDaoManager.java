@@ -98,6 +98,14 @@ public final class BaseDaoManager {
         }
     }
 
+    public <T extends AbstractEntity> T find(Class<T> clazz, Serializable id) {
+        if (id == null) {
+            return null;
+        } else {
+            return id instanceof Number && ((Number)id).intValue() == 0 ? null : this.entityManager.find(clazz, id);
+        }
+    }
+
     private <T extends AbstractEntity> void dataCleaning(T entity) {
         //不为null，是空字符串情况
         if (entity.getId() != null && entity.getId() instanceof String && StringUtils.isBlank((String)entity.getId())) {

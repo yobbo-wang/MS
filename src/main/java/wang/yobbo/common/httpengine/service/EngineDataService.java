@@ -1,6 +1,9 @@
 package wang.yobbo.common.httpengine.service;
 
+import com.alibaba.druid.VERSION;
+
 import javax.servlet.ServletContext;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class EngineDataService extends EngineDataServiceHelp{
@@ -18,16 +21,28 @@ public class EngineDataService extends EngineDataServiceHelp{
      * 获取模板中数据,返回给模板
      * @param url 前端发送的请求
      * @param parameters URL中的参数列表
-     * @param context ServletContext上下文
      * @return 返回模板中需要的数据
      */
-    public Object processTemplate(String url, Map<String, String> parameters, ServletContext context){
+    public Object processTemplate(String url, Map<String, String> parameters){
+        Map<String,Object> basicInfo = getBasicInfo(parameters);
         if (url.startsWith("/index.html")) { //首页信息
-            return  engineDataManagerFacade.getBasicInfo(parameters);
-        }else if(url.startsWith("/code.html")){
-            return engineDataManagerFacade.getCodeInfo(parameters);
+            return  engineDataManagerFacade.getIndexInfo(basicInfo);
+        }else if(url.startsWith("/menu/index.html")){
+            return engineDataManagerFacade.getMenuInfo(basicInfo);
+        }else if(url.startsWith("/menu/entity.html")){
+            return engineDataManagerFacade.getMenuTableInfo(basicInfo);
         }
         return null;
+    }
+
+    /**
+     * 组合工具数据
+     */
+    public Map<String,Object> getBasicInfo(Map<String,String> params){
+        Map<String,Object> dataMap = new LinkedHashMap<String,Object>();
+        dataMap.putAll(params);
+        dataMap.put("Version", VERSION.getVersionNumber());
+        return dataMap;
     }
 
     /**

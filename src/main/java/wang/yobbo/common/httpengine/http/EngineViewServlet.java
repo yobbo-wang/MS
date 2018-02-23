@@ -10,6 +10,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import wang.yobbo.common.httpengine.service.EngineDataService;
+import wang.yobbo.common.spring.PropertyConfigurer;
+import wang.yobbo.common.spring.SpringContextUtil;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -39,15 +41,19 @@ public class EngineViewServlet extends HttpServlet {
     @Override
     public void init(ServletConfig config) {
         configuration = new Configuration(Configuration.getVersion()); // 创建模板
-        webAppPath = config.getServletContext().getRealPath("/");
-        jar_path = webAppPath + "WEB-INF/lib/appEngine-"+this.jar_version+".jar"; // 最终版，发布时去掉注释
         try {
             configuration.setDefaultEncoding("UTF-8");
             configuration.setClassForTemplateLoading(this.getClass(),"/");
+            PropertyConfigurer propertyConfigurer = SpringContextUtil.getBean(PropertyConfigurer.class);
+            jar_version = propertyConfigurer.getProperty("system.jar.version");
+            package_name = propertyConfigurer.getProperty("system.package.name");
+            base_path = propertyConfigurer.getProperty("system.base.path");
+            webAppPath = config.getServletContext().getRealPath("/");
+            jar_path = webAppPath + "WEB-INF/lib/appEngine-"+this.jar_version+".jar"; // 最终版，发布时去掉注释
         } catch (Exception e) {
             e.printStackTrace();
             LOG.info("创建模板失败!");
-        }
+    }
         LOG.info("engineViewServlet初始化成功!");
     }
 
@@ -165,11 +171,12 @@ public class EngineViewServlet extends HttpServlet {
             params.put("base_path",base_path);
             params.put("package_name",package_name);
             params.put("contextPath", servletContext.getContextPath());
-            Object data = EngineDataService.getInstance().processTemplate(path,params, servletContext);
+            Object data = EngineDataService.getInstance().processTemplate(path, params);
+            LOG.debug("data参数: " + data);
 
             Template template = configuration.getTemplate(filePath);
             Writer writer = response.getWriter();
-            template.process(data,writer);
+            template.process(data, writer);
         } catch (TemplateException e) {
             e.printStackTrace();
         }
@@ -189,7 +196,6 @@ public class EngineViewServlet extends HttpServlet {
         return base_path;
     }
 
-    @Value("#{props.base_path}")
     public void setBase_path(String base_path) {
         this.base_path = base_path;
     }
@@ -198,7 +204,6 @@ public class EngineViewServlet extends HttpServlet {
         return package_name;
     }
 
-    @Value("#{props.package_name}")
     public void setPackage_name(String package_name) {
         this.package_name = package_name;
     }
@@ -208,7 +213,6 @@ public class EngineViewServlet extends HttpServlet {
         return jar_path;
     }
 
-    @Value("#{props.jar_version}")
     public void setJar_version(String jar_version) {
         this.jar_version = jar_version;
     }

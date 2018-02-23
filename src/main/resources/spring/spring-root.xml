@@ -2,11 +2,11 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-    <!-- 设置配置文件，方便在java类中用注解获取值 -->
-    <bean id="props" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+    <!-- 自定义PropertyConfigurer类，用来获取配置文件 -->
+    <bean id="propertyConfigurer" class="wang.yobbo.common.spring.PropertyConfigurer">
         <property name="locations">
             <array>
-                <value>classpath:props/system.properties</value>
+                <value>classpath:props/**.properties</value>
             </array>
         </property>
     </bean>

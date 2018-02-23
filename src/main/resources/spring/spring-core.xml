@@ -11,6 +11,8 @@
         <context:exclude-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice" />
     </context:component-scan>
 
+    <bean id="applicationContext" class="wang.yobbo.common.spring.SpringContextUtil"/>
+
     <!-- shiro相关 -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="realm" ref="userRealm"></property>

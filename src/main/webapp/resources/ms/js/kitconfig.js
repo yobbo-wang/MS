@@ -1,6 +1,6 @@
 ;layui.define(function(exports) {
     var kitconfig = {
-        resourcePath: '/resources/ms/',
+        resourcePath: path + '/resources/ms/',
     };
     exports('kitconfig', kitconfig);
 });

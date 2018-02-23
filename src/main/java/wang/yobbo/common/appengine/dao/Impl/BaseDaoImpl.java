@@ -80,20 +80,11 @@ public class BaseDaoImpl<E extends AbstractEntity, ID extends Serializable> impl
     }
 
     /**
-     * 保存
+     * 保存或更新
      * @param entity
      * @return
      */
     public E saveOfEntity(E entity) {
-        return this.getBaseDaoManager().save(entity);
-    }
-
-    /**
-     * 更新
-     * @param entity
-     * @return
-     */
-    public E updateOfEntity(E entity) {
         return this.getBaseDaoManager().save(entity);
     }
 
@@ -115,12 +106,9 @@ public class BaseDaoImpl<E extends AbstractEntity, ID extends Serializable> impl
         this.getBaseDaoManager().delete(entity);
     }
 
-    public E get(Serializable var0) {
-        return null;
-    }
-
-    public E get(Serializable var0, E var1) {
-        return null;
+    public E get(Serializable id) {
+        E entity = this.getBaseDaoManager().find(this.getClassForStatic(), id);
+        return entity;
     }
 
     /**

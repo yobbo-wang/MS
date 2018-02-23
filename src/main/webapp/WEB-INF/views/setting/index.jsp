@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <link rel="stylesheet" href="<%= path%>/resources/layui/css/layui.css" type="text/css">
     <link rel="stylesheet" href="<%= path%>/resources/font-awesome/css/font-awesome.css" type="text/css">
+    <script type="application/javascript">var path = '<%= path%>'</script>
     <style>
         body .layui-card {box-shadow: 1px 1px 1px 2px rgba(0,0,0,.05);}
         .layui-fluid {padding: 15px}
